@@ -23,16 +23,7 @@
         </div>
 
         <div class="greeting-container">
-          <span class="greeting">
-            <span class="greeting-hello">¡Hola!</span>
-            <span class="greeting-text">Qué alegría tenerte por aquí, soy</span>
-            <svg class="wave-hand" xmlns="http://www.w3.org/2000/svg" width="24" height="26" viewBox="0 0 24 26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M18 11V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v5" />
-              <path d="M14 10V4a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v8" />
-              <path d="M10 10.5V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v8" />
-              <path d="M6 15v-1.5a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2V19a6 6 0 0 0 6 6h4a10 10 0 0 0 10-10v-1.5a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2V15" />
-            </svg>
-          </span>
+          <span class="greeting"><span class="greeting-hello">¡Hola!</span><span class="greeting-text">Qué alegría tenerte por aquí, soy</span><svg class="wave-hand" xmlns="http://www.w3.org/2000/svg" width="24" height="26" viewBox="0 0 24 26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 11V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v5" /><path d="M14 10V4a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v8" /><path d="M10 10.5V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v8" /><path d="M6 15v-1.5a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2V19a6 6 0 0 0 6 6h4a10 10 0 0 0 10-10v-1.5a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2V15" /></svg></span>
         </div>
 
         <h1 class="name-heading">
@@ -342,13 +333,12 @@
   }
 
   .greeting {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
+    display: inline-block;
     font-size: 1.25rem;
     font-weight: 500;
     color: var(--text-primary);
     letter-spacing: 0;
+    line-height: 1.4;
   }
 
   .greeting-hello {
@@ -359,6 +349,11 @@
     font-weight: 800;
     font-size: 1.55rem;
     display: inline-block;
+    margin-right: 0.5rem;
+  }
+
+  .greeting-text {
+    display: inline;
   }
 
   .wave-hand {
@@ -368,6 +363,7 @@
     vertical-align: middle;
     color: var(--accent-green, #6d8569);
     overflow: visible;
+    margin-left: 0.5rem;
   }
 
   @keyframes wave-animation {
@@ -734,7 +730,9 @@
     }
 
     .greeting {
+      display: block;
       font-size: 1.1rem;
+      text-align: center;
     }
 
     .greeting-hello {

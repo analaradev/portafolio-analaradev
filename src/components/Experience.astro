@@ -1,0 +1,343 @@
+---
+// Experience.astro — Professional experience timeline with glassmorphism cards
+const experiences = [
+  {
+    company: 'IMPACTA SOLUCIONES RRHH S.A.S. DE C.V.',
+    role: 'Prácticas profesionales / Desarrollo web',
+    date: 'Febrero 2026 – Actualidad',
+    current: true,
+    techStack: ['Angular', '.NET Core', 'C#', 'SQL Server', 'GitHub'],
+    description: [
+      'Desarrollo de aplicación web para administración y control de activos',
+      'Implementación de funcionalidades de registro, consulta y gestión',
+      'Frontend con Angular y backend con .NET/.NET Core y C#',
+      'Base de datos SQL Server y control de versiones con GitHub',
+    ],
+  },
+  {
+    company: 'CÓDIGO LATE S.A. DE C.V.',
+    role: 'Desarrolladora de Software',
+    date: 'Enero 2023 – Febrero 2026',
+    current: false,
+    techStack: ['Flutter', 'Dart', 'Laravel', 'PHP', 'CodeIgniter', 'Astro', 'JavaScript', 'SQL'],
+    description: [
+      'Desarrollo y mantenimiento de aplicaciones móviles, sistemas internos y plataformas',
+      'Proyectos de software completos: desde mejoras de interfaz hasta despliegue y soporte',
+      'Aplicaciones móviles Flutter, sistemas PHP/CodeIgniter, plataformas Laravel, sitios Astro',
+      'Corrección de fallos, documentación, administración de bases de datos y publicación',
+    ],
+  },
+];
+
+/* Tech badge color mappings */
+const techColors: Record<string, { bg: string; border: string; color: string }> = {
+  Angular:      { bg: 'rgba(96, 114, 90, 0.08)',   border: 'rgba(96, 114, 90, 0.20)',   color: '#384534' },
+  '.NET Core':  { bg: 'rgba(135, 155, 128, 0.08)',  border: 'rgba(135, 155, 128, 0.20)',  color: '#5e6f5a' },
+  'C#':         { bg: 'rgba(165, 184, 160, 0.12)',  border: 'rgba(165, 184, 160, 0.25)',  color: '#384534' },
+  'SQL Server': { bg: 'rgba(133, 150, 128, 0.08)',  border: 'rgba(133, 150, 128, 0.20)',  color: '#5e6f5a' },
+  GitHub:       { bg: 'rgba(96, 114, 90, 0.05)',   border: 'rgba(96, 114, 90, 0.15)',   color: '#5e6f5a' },
+  Flutter:      { bg: 'rgba(96, 114, 90, 0.08)',   border: 'rgba(96, 114, 90, 0.20)',   color: '#384534' },
+  Dart:         { bg: 'rgba(135, 155, 128, 0.08)',  border: 'rgba(135, 155, 128, 0.20)',  color: '#5e6f5a' },
+  Laravel:      { bg: 'rgba(96, 114, 90, 0.08)',   border: 'rgba(96, 114, 90, 0.20)',   color: '#384534' },
+  PHP:          { bg: 'rgba(165, 184, 160, 0.12)',  border: 'rgba(165, 184, 160, 0.25)',  color: '#5e6f5a' },
+  CodeIgniter:  { bg: 'rgba(133, 150, 128, 0.08)',  border: 'rgba(133, 150, 128, 0.20)',  color: '#5e6f5a' },
+  Astro:        { bg: 'rgba(96, 114, 90, 0.08)',   border: 'rgba(96, 114, 90, 0.20)',   color: '#384534' },
+  JavaScript:   { bg: 'rgba(135, 155, 128, 0.08)',  border: 'rgba(135, 155, 128, 0.20)',  color: '#5e6f5a' },
+  SQL:          { bg: 'rgba(133, 150, 128, 0.08)',  border: 'rgba(133, 150, 128, 0.20)',  color: '#5e6f5a' },
+};
+
+const defaultColor = { bg: 'rgba(96, 114, 90, 0.08)', border: 'rgba(96, 114, 90, 0.20)', color: '#384534' };
+---
+
+<section id="experience" class="section">
+  <div class="container">
+    <!-- Section Header -->
+    <h2 class="section-title gradient-text animate-in">Experiencia Profesional</h2>
+    <p class="section-subtitle animate-in">Mi trayectoria en desarrollo de software</p>
+
+    <!-- Timeline -->
+    <div class="timeline">
+      {experiences.map((exp, index) => {
+        return (
+          <div class={`timeline__item animate-in`}>
+            <!-- Dot on the line -->
+            <div class="timeline__dot" />
+
+            <!-- Card -->
+            <div class="glass-card timeline__card">
+              <!-- Header row: badge + date -->
+              <div class="timeline__header">
+                {exp.current && (
+                  <span class="timeline__badge-current">Actual</span>
+                )}
+                <span class="timeline__date">{exp.date}</span>
+              </div>
+
+              <!-- Company -->
+              <span class="timeline__company">{exp.company}</span>
+
+              <!-- Role -->
+              <h3 class="timeline__role">{exp.role}</h3>
+
+              <!-- Tech badges -->
+              <div class="timeline__tech">
+                {exp.techStack.map((tech) => {
+                  const c = techColors[tech] || defaultColor;
+                  return (
+                    <span
+                      class="badge"
+                      style={`background: ${c.bg}; border-color: ${c.border}; color: ${c.color};`}
+                    >
+                      {tech}
+                    </span>
+                  );
+                })}
+              </div>
+
+              <!-- Description bullets -->
+              <ul class="timeline__desc">
+                {exp.description.map((item) => (
+                  <li>{item}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  </div>
+</section>
+
+<style>
+  /* ── Timeline Container ─────────────────────────── */
+  .timeline {
+    position: relative;
+    padding-top: 0.5rem;
+  }
+
+  /* Vertical line */
+  .timeline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 5px;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(
+      180deg,
+      var(--accent-primary, #60725a),
+      var(--accent-secondary, #879b80)
+    );
+    border-radius: 1px;
+    opacity: 0.5;
+  }
+
+  /* ── Timeline Item ──────────────────────────────── */
+  .timeline__item {
+    position: relative;
+    padding-left: 3rem;
+    margin-bottom: 3rem;
+  }
+
+  .timeline__item:last-child {
+    margin-bottom: 0;
+  }
+
+  /* ── Timeline Dot ───────────────────────────────── */
+  .timeline__dot {
+    position: absolute;
+    top: 2rem;
+    left: 0;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: linear-gradient(
+      135deg,
+      var(--accent-primary, #60725a),
+      var(--accent-secondary, #879b80)
+    );
+    border: 3px solid var(--bg-primary, #f3f6f2);
+    z-index: 2;
+    box-shadow: 0 0 0 3px rgba(96, 114, 90, 0.15);
+  }
+
+  /* ── Glass Card ─────────────────────────────────── */
+  .timeline__card {
+    padding: 2rem;
+  }
+
+  /* ── Header (badge + date) ──────────────────────── */
+  .timeline__header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  .timeline__badge-current {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.25rem 0.85rem;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    background: color-mix(in srgb, var(--accent-green) 12%, transparent);
+    color: var(--accent-green, #6d8569);
+    border: 1px solid color-mix(in srgb, var(--accent-green) 30%, transparent);
+    animation: pulse-glow-green 3s ease-in-out infinite;
+  }
+
+  @keyframes pulse-glow-green {
+    0%   { box-shadow: 0 0 4px color-mix(in srgb, var(--accent-green) 20%, transparent); }
+    50%  { box-shadow: 0 0 14px color-mix(in srgb, var(--accent-green) 40%, transparent); }
+    100% { box-shadow: 0 0 4px color-mix(in srgb, var(--accent-green) 20%, transparent); }
+  }
+
+  .timeline__date {
+    font-size: 0.85rem;
+    color: var(--text-secondary, #9090b0);
+    font-weight: 500;
+  }
+
+  /* ── Company ────────────────────────────────────── */
+  .timeline__company {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--text-muted, #606080);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 500;
+    margin-bottom: 0.35rem;
+  }
+
+  /* ── Role ────────────────────────────────────────── */
+  .timeline__role {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--text-primary, #e8e8f0);
+    margin-bottom: 1rem;
+    line-height: 1.3;
+  }
+
+  /* ── Tech Badges ────────────────────────────────── */
+  .timeline__tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.25rem;
+  }
+
+  /* ── Description List ───────────────────────────── */
+  .timeline__desc {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .timeline__desc li {
+    position: relative;
+    padding-left: 1.3rem;
+    font-size: 0.95rem;
+    color: var(--text-secondary, #9090b0);
+    line-height: 1.6;
+  }
+
+  .timeline__desc li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.55em;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent-primary, #60725a);
+    opacity: 0.8;
+  }
+
+  /* ── Card Hover ─────────────────────────────────── */
+  .timeline__card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-glow, 0 8px 30px rgba(96, 114, 90, 0.12));
+  }
+
+  /* ── Responsive ─────────────────────────────────── */
+  @media (max-width: 768px) {
+    .timeline::before {
+      left: 4px;
+    }
+
+    .timeline__item {
+      padding-left: 2.25rem;
+      margin-bottom: 2rem;
+    }
+
+    .timeline__card {
+      padding: 1.5rem;
+    }
+
+    .timeline__role {
+      font-size: 1.15rem;
+    }
+
+    .timeline__desc li {
+      font-size: 0.9rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .timeline__item {
+      padding-left: 1.75rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .timeline__card {
+      padding: 1.25rem;
+    }
+
+    .timeline__header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.4rem;
+    }
+
+    .timeline__role {
+      font-size: 1.05rem;
+    }
+
+    .timeline__tech {
+      gap: 0.35rem;
+    }
+
+    .timeline__company {
+      font-size: 0.78rem;
+    }
+  }
+</style>
+
+<script>
+  // Scroll-triggered reveal for timeline items
+  document.addEventListener('DOMContentLoaded', () => {
+    const animateItems = document.querySelectorAll('#experience .animate-in');
+    if (!animateItems.length) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.15, rootMargin: '0px 0px -40px 0px' }
+    );
+
+    animateItems.forEach((item) => observer.observe(item));
+  });
+</script>

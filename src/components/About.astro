@@ -1,0 +1,231 @@
+---
+// About.astro – Sobre Mí section
+---
+
+<section id="about" class="section">
+  <div class="container">
+    <h2 class="section-title"><span class="gradient-text">Sobre Mí</span></h2>
+
+    <div class="about-grid">
+      <!-- Card 1 – Bio -->
+      <div class="glass-card animate-in about-bio-card">
+        <div class="card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+            <circle cx="12" cy="7" r="4" />
+          </svg>
+        </div>
+        <h3>Perfil Profesional</h3>
+        <p>
+          Soy Ana Patricia Hernández Lara, desarrolladora de software con más de 4 años de experiencia construyendo soluciones tecnológicas reales. Mi pasión es transformar ideas en productos funcionales que resuelven problemas concretos.
+        </p>
+        <p>
+          He trabajado en proyectos completos desde cero: aplicaciones móviles publicadas en Google Play y App Store, sistemas de punto de venta e inventario, plataformas administrativas, APIs REST y sitios web corporativos.
+        </p>
+      </div>
+
+      <!-- Card 2 – Education -->
+      <div class="glass-card animate-in">
+        <div class="card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+            <path d="M6 12v5c0 1.1 2.7 3 6 3s6-1.9 6-3v-5" />
+          </svg>
+        </div>
+        <h3>Formación Académica</h3>
+
+        <div class="edu-item">
+          <span class="edu-degree">Ingeniería en Sistemas Computacionales</span>
+          <span class="edu-school">Universidad Autónoma de Tamaulipas</span>
+          <span class="edu-period">2021 – 2026 | Estudios concluidos</span>
+        </div>
+
+        <div class="edu-item">
+          <span class="edu-degree">Técnico en Programación</span>
+          <span class="edu-school">CETis 109</span>
+          <span class="edu-period">2018 – 2021</span>
+        </div>
+      </div>
+
+      <!-- Card 3 – Achievements -->
+      <div class="glass-card animate-in">
+        <div class="card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6" />
+            <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18" />
+            <path d="M4 22h16" />
+            <path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22" />
+            <path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22" />
+            <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z" />
+          </svg>
+        </div>
+        <h3>Logros</h3>
+
+        <ul class="achievements-list">
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="achievement-icon">
+              <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6" />
+              <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18" />
+              <path d="M4 22h16" />
+              <path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22" />
+              <path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22" />
+              <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z" />
+            </svg>
+            <span>ICPC Grand Final Mexico 2024 y 2025</span>
+          </li>
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="achievement-icon">
+              <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6" />
+              <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18" />
+              <path d="M4 22h16" />
+              <path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22" />
+              <path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22" />
+              <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z" />
+            </svg>
+            <span>ICPC Local 2022, 2023, 2024 y 2025</span>
+          </li>
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="achievement-icon">
+              <rect x="5" y="2" width="14" height="20" rx="2" ry="2" />
+              <line x1="12" y1="18" x2="12.01" y2="18" />
+            </svg>
+            <span>App publicada en Google Play y App Store</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .section {
+    padding-top: 0;
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    align-items: stretch;
+  }
+
+  /* ── Bio paragraphs ── */
+  .about-bio-card p {
+    color: var(--text-secondary);
+    line-height: 1.8;
+    margin-bottom: 1.2rem;
+    font-size: 1rem;
+  }
+
+  .about-bio-card p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* ── Card icon ── */
+  .card-icon {
+    color: var(--accent-primary);
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: color-mix(in srgb, var(--accent-primary) 12%, transparent);
+  }
+
+  /* ── Card headings ── */
+  .glass-card h3 {
+    font-weight: 600;
+    margin-bottom: 0.8rem;
+    color: var(--text-primary);
+    font-size: 1.15rem;
+  }
+
+  /* ── Education items ── */
+  .edu-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    margin-bottom: 1rem;
+    padding-left: 0.75rem;
+    border-left: 2px solid var(--accent-primary);
+  }
+
+  .edu-item:last-child {
+    margin-bottom: 0;
+  }
+
+  .edu-degree {
+    color: var(--text-primary);
+    font-weight: 500;
+    font-size: 0.95rem;
+  }
+
+  .edu-school {
+    color: var(--text-secondary);
+    font-size: 0.88rem;
+  }
+
+  .edu-period {
+    color: var(--text-secondary);
+    font-size: 0.82rem;
+    opacity: 0.75;
+  }
+
+  /* ── Achievements list ── */
+  .achievements-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+  }
+
+  .achievements-list li {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    padding: 0.5rem 0.75rem;
+    border-radius: 8px;
+    background: rgba(96, 114, 90, 0.04);
+    transition: background 0.25s ease, transform 0.25s ease;
+  }
+
+  .achievement-icon {
+    flex-shrink: 0;
+    color: var(--accent-primary);
+  }
+
+  .achievements-list li:hover {
+    background: color-mix(in srgb, var(--accent-primary) 8%, transparent);
+    transform: translateX(4px);
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 1024px) {
+    .about-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+    
+    .about-bio-card {
+      grid-column: span 2;
+    }
+  }
+
+  @media (max-width: 680px) {
+    .about-grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+    
+    .about-bio-card {
+      grid-column: span 1;
+    }
+  }
+</style>

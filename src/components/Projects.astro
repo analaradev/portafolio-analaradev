@@ -1,0 +1,762 @@
+---
+// Projects.astro — Premium project showcase with glassmorphism cards
+
+interface ProjectLink {
+  label: string;
+  url: string;
+  icon?: string;
+}
+
+interface Project {
+  name: string;
+  type: string;
+  description: string;
+  tech: string[];
+  links: ProjectLink[];
+  highlights: string[];
+  featured?: boolean;
+  accentColor: string;
+  screenshots?: { src: string; label: string }[];
+}
+
+const projects: Project[] = [
+  {
+    name: 'Pan de Vida',
+    type: 'App Móvil + Sistema + POS',
+    description:
+      'Proyecto integral: aplicación móvil publicada, sistema interno de gestión y plataforma de punto de venta e inventario para librería.',
+    tech: ['Flutter', 'Dart', 'GetX', 'Clean Architecture', 'Laravel', 'PHP', 'CodeIgniter', 'SQL'],
+    links: [
+      {
+        label: 'Google Play',
+        url: 'https://play.google.com/store/apps/details?id=com.campustd.pandevidarenovado&hl=es_MX',
+        icon: 'play',
+      },
+      {
+        label: 'App Store',
+        url: 'https://apps.apple.com/us/app/pan-de-vida-renovado/id6741119703?l=es-MX',
+        icon: 'apple',
+      },
+    ],
+    highlights: [
+      'App reconstruida desde cero',
+      'Clean Architecture + GetX',
+      'POS e inventario con Laravel',
+      'Optimización y rutas en CodeIgniter',
+    ],
+    featured: true,
+    accentColor: '#60725a',
+    screenshots: [
+      { src: '/projects/pandevida/eventos.png', label: 'App — Eventos y Videos' },
+      { src: '/projects/pandevida/pos.png', label: 'App — Escaneo POS' },
+      { src: '/projects/pandevida/menu.png', label: 'App — Menú de Navegación' },
+      { src: '/projects/pandevida/admin_dashboard.png', label: 'Laravel — Dashboard Administrativo' },
+      { src: '/projects/pandevida/admin_movimientos.png', label: 'Laravel — Historial de Movimientos' },
+      { src: '/projects/pandevida/admin_envios.png', label: 'Laravel — Control de Envíos' },
+      { src: '/projects/pandevida/ci_tests_ministerio.png', label: 'CodeIgniter — Tests de Ministerios' },
+      { src: '/projects/pandevida/ci_reportes_cumbres.png', label: 'CodeIgniter — Reporte de Cumbres' },
+    ],
+  },
+  {
+    name: 'Petrotekno Control Interno',
+    type: 'Plataforma Administrativa',
+    description:
+      'Plataforma para gestión de flota vehicular, asignación de proyectos y control de datos operativos.',
+    tech: ['Laravel', 'PHP', 'SQL'],
+    links: [
+      { label: 'GitHub', url: 'https://github.com/analaradev/client-petrotekno-control_interno' },
+    ],
+    highlights: ['Módulos de registro y consulta', 'Control de flota y proyectos', 'Sistema en producción'],
+    accentColor: '#879b80',
+    screenshots: [
+      { src: '/projects/petrotekno/dashboard.png', label: 'Dashboard de Activos' },
+      { src: '/projects/petrotekno/reportes.png', label: 'Generación de Reportes' },
+      { src: '/projects/petrotekno/configuracion.png', label: 'Configuración de Catálogos' },
+    ],
+  },
+  {
+    name: 'Urban Arquitectura',
+    type: 'Sitio Web Corporativo',
+    description:
+      'Rediseño y mejora de sitio web corporativo para presencia digital de firma de arquitectura.',
+    tech: ['Astro', 'HTML', 'CSS', 'JavaScript'],
+    links: [
+      { label: 'Sitio Web', url: 'https://urbanarquitectura.mx/' },
+      { label: 'GitHub', url: 'https://github.com/analaradev/client-urbanarquitectura-web' },
+    ],
+    highlights: ['Rediseño completo', 'Diseño responsivo', 'Identidad visual profesional'],
+    accentColor: '#a5b8a0',
+    screenshots: [
+      { src: '/projects/urbanarquitectura/inicio.png', label: 'Página de Inicio / Carrusel' },
+      { src: '/projects/urbanarquitectura/talleres.png', label: 'Talleres y Servicios Especializados' },
+      { src: '/projects/urbanarquitectura/contacto.png', label: 'Contacto y Ubicación' },
+    ],
+  },
+  {
+    name: 'Vida Saludable',
+    type: 'Sistema Flutter',
+    description:
+      'Sistema para control de formularios y generación de reportes sanitarios escolares.',
+    tech: ['Flutter', 'Dart', 'Firebase'],
+    links: [
+      { label: 'GitHub', url: 'https://github.com/analaradev/client-vida_saludable' },
+    ],
+    highlights: ['Formularios dinámicos', 'Reportes sanitarios', 'Gestión de datos con Firebase'],
+    accentColor: '#6d8569',
+    screenshots: [
+      { src: '/projects/vidasaludable/dashboard.png', label: 'Dashboard — Estadísticas y Gráficas' },
+      { src: '/projects/vidasaludable/busqueda.png', label: 'Búsqueda — Filtros y Alumnos' },
+      { src: '/projects/vidasaludable/detalle.png', label: 'Detalle — Información y Evaluación' },
+    ],
+  },
+];
+
+/**
+ * Returns an inline SVG icon string for a given link type.
+ */
+function getLinkIcon(label: string, icon?: string): string {
+  if (icon === 'play') {
+    return `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>`;
+  }
+  if (icon === 'apple') {
+    return `<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>`;
+  }
+  if (label === 'GitHub') {
+    return `<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>`;
+  }
+  if (label === 'Sitio Web') {
+    return `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>`;
+  }
+  // Default external link icon
+  return `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>`;
+}
+---
+
+<section id="projects" class="section projects-section">
+  <div class="container">
+    <!-- Header -->
+    <h2 class="section-title gradient-text animate-in">Proyectos Destacados</h2>
+    <p class="section-subtitle animate-in">Soluciones reales para usuarios reales</p>
+
+    <!-- Projects Grid -->
+    <div class="projects-grid">
+      {projects.map((project) => (
+        <article
+          class={`project-card glass-card animate-in ${project.featured ? 'project-card--featured' : ''}`}
+          style={`--card-accent: ${project.accentColor};`}
+        >
+          {/* Accent glow overlay */}
+          <div class="project-card__glow" />
+
+          {/* Content Column */}
+          <div class="project-card__content">
+            {/* Top: type badge + featured ribbon */}
+            <div class="project-card__header">
+              <span class="project-card__type">{project.type}</span>
+              {project.featured && (
+                <span class="project-card__featured-badge">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                  </svg>
+                  Destacado
+                </span>
+              )}
+            </div>
+
+            {/* Title */}
+            <h3 class="project-card__title">{project.name}</h3>
+
+            {/* Description */}
+            <p class="project-card__description">{project.description}</p>
+
+            {/* Details (Highlights, Tech, Links) */}
+            <div class="project-card__details">
+              {/* Highlights */}
+              <ul class="project-card__highlights">
+                {project.highlights.map((h) => (
+                  <li class="project-card__highlight">
+                    <svg class="project-card__check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="20 6 9 17 4 12" />
+                    </svg>
+                    {h}
+                  </li>
+                ))}
+              </ul>
+
+              {/* Tech tags + Links wrapper */}
+              <div class="project-card__tech-links">
+                {/* Tech tags */}
+                <div class="project-card__tech">
+                  {project.tech.map((t) => (
+                    <span class="project-card__tech-tag">{t}</span>
+                  ))}
+                </div>
+
+                {/* Links */}
+                {project.links.length > 0 && (
+                  <div class="project-card__links">
+                    {project.links.map((link) => (
+                      <a
+                        href={link.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="project-card__link"
+                      >
+                        <Fragment set:html={getLinkIcon(link.label, link.icon)} />
+                        {link.label}
+                      </a>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+
+          {/* Bottom Gallery wrapper (if screenshots exist) */}
+          {project.screenshots && project.screenshots.length > 0 && (
+            <div class="project-card__gallery">
+              <div class="project-card__gallery-viewport">
+                {project.screenshots.map((shot, idx) => (
+                  <img
+                    src={shot.src}
+                    alt={shot.label}
+                    class={`project-card__gallery-img ${idx === 0 ? 'active' : ''}`}
+                    data-index={idx}
+                  />
+                ))}
+              </div>
+              <div class="project-card__gallery-caption">
+                <span class="project-card__gallery-label">{project.screenshots[0].label}</span>
+                <span class="project-card__gallery-counter">1 / {project.screenshots.length}</span>
+              </div>
+              {project.screenshots.length > 1 && (
+                <div class="project-card__gallery-controls">
+                  <button class="project-card__gallery-btn prev-btn" aria-label="Anterior">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+                  </button>
+                  <button class="project-card__gallery-btn next-btn" aria-label="Siguiente">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                  </button>
+                </div>
+              )}
+            </div>
+          )}
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  /* ── Section ─────────────────────────────────────────── */
+  .projects-section {
+    background: linear-gradient(
+      180deg,
+      var(--bg-primary) 0%,
+      var(--bg-secondary) 50%,
+      var(--bg-primary) 100%
+    );
+  }
+
+  /* ── Grid ────────────────────────────────────────────── */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+  }
+
+  /* ── Card Base ───────────────────────────────────────── */
+  .project-card {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    position: relative;
+    overflow: hidden;
+    transition:
+      transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+      box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+      border-color 0.4s ease;
+  }
+
+  .project-card__content {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    flex: 1;
+  }
+
+  /* Subtle top shimmer line */
+  .project-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      var(--card-accent),
+      transparent
+    );
+    opacity: 0.25;
+  }
+
+  /* Accent glow overlay — hidden by default */
+  .project-card__glow {
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(
+      circle at center,
+      color-mix(in srgb, var(--card-accent) 8%, transparent),
+      transparent 70%
+    );
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+
+  /* ── Card Hover ──────────────────────────────────────── */
+  .project-card:hover {
+    transform: translateY(-6px);
+    box-shadow:
+      0 20px 40px rgba(96, 114, 90, 0.08),
+      0 0 30px color-mix(in srgb, var(--card-accent) 12%, transparent);
+    border-color: var(--card-accent);
+  }
+
+  .project-card:hover .project-card__glow {
+    opacity: 1;
+  }
+
+  .project-card:hover .project-card__title {
+    color: var(--card-accent);
+  }
+
+  /* ── Featured Card ───────────────────────────────────── */
+  .project-card--featured {
+    grid-column: 1 / -1;
+    background: linear-gradient(
+      135deg,
+      rgba(96, 114, 90, 0.06) 0%,
+      var(--glass) 100%
+    );
+    border-width: 1px;
+    box-shadow:
+      0 0 50px rgba(96, 114, 90, 0.08),
+      inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  }
+
+  @media (min-width: 900px) {
+    .project-card--featured {
+      display: grid;
+      grid-template-columns: 1.25fr 1fr;
+      gap: 2.5rem;
+      align-items: center;
+    }
+    .project-card--featured .project-card__details {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+  }
+
+  .project-card--featured::after {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: var(--border-radius);
+    padding: 1px;
+    background: linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--card-accent) 25%, transparent),
+      transparent 60%
+    );
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+    border-radius: var(--border-radius);
+  }
+
+  /* ── Gallery Styling ─────────────────────────────────── */
+  .project-card__gallery {
+    position: relative;
+    width: 100%;
+    border-radius: var(--border-radius-sm);
+    border: 1px solid var(--glass-border);
+    overflow: hidden;
+    background: var(--bg-secondary);
+    box-shadow: 0 4px 15px rgba(96, 114, 90, 0.04);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .project-card__gallery-viewport {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .project-card__gallery-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 0.5rem;
+    opacity: 0;
+    transition: opacity 0.35s ease, transform 0.35s ease;
+    transform: scale(0.97);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .project-card__gallery-img.active {
+    opacity: 1;
+    transform: scale(1);
+    pointer-events: auto;
+    z-index: 2;
+  }
+
+  .project-card__gallery-caption {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.6rem 0.9rem;
+    background: rgba(255, 255, 255, 0.45);
+    border-top: 1px solid var(--glass-border);
+    font-size: 0.78rem;
+    color: var(--text-secondary);
+  }
+
+  .project-card__gallery-label {
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 70%;
+  }
+
+  .project-card__gallery-counter {
+    font-family: var(--font-mono);
+    opacity: 0.8;
+  }
+
+  .project-card__gallery-controls {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0.5rem;
+    right: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    pointer-events: none;
+    z-index: 10;
+  }
+
+  .project-card__gallery-btn {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid var(--glass-border);
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: var(--transition);
+    pointer-events: auto;
+    box-shadow: 0 2px 8px rgba(96, 114, 90, 0.1);
+    opacity: 0;
+    transform: scale(0.8);
+  }
+
+  .project-card__gallery:hover .project-card__gallery-btn {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .project-card__gallery-btn:hover {
+    background: #ffffff;
+    color: var(--accent-primary);
+    transform: scale(1.08);
+    box-shadow: 0 4px 12px rgba(96, 114, 90, 0.18);
+  }
+
+  .project-card__gallery-btn:active {
+    transform: scale(0.95);
+  }
+
+  /* ── Card Header (Type Badge + Featured) ─────────────── */
+  .project-card__header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  .project-card__type {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.3rem 0.85rem;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: var(--card-accent);
+    background: color-mix(in srgb, var(--card-accent) 12%, transparent);
+    border: 1px solid color-mix(in srgb, var(--card-accent) 25%, transparent);
+  }
+
+  .project-card__featured-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.3rem 0.75rem;
+    border-radius: 50px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #fbbf24;
+    background: rgba(251, 191, 36, 0.1);
+    border: 1px solid rgba(251, 191, 36, 0.25);
+    animation: pulse-glow-gold 3s ease-in-out infinite;
+  }
+
+  @keyframes pulse-glow-gold {
+    0%,
+    100% {
+      box-shadow: 0 0 4px rgba(251, 191, 36, 0.15);
+    }
+    50% {
+      box-shadow: 0 0 12px rgba(251, 191, 36, 0.3);
+    }
+  }
+
+  /* ── Title ───────────────────────────────────────────── */
+  .project-card__title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    line-height: 1.3;
+    transition: color 0.3s ease;
+  }
+
+  /* ── Description ─────────────────────────────────────── */
+  .project-card__description {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.65;
+  }
+
+  /* ── Highlights ──────────────────────────────────────── */
+  .project-card__highlights {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin: 0.25rem 0;
+  }
+
+  .project-card__highlight {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    line-height: 1.4;
+  }
+
+  .project-card__check {
+    flex-shrink: 0;
+    color: var(--card-accent);
+    opacity: 0.85;
+  }
+
+  /* ── Tech Tags ───────────────────────────────────────── */
+  .project-card__tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    margin-top: auto;
+    padding-top: 0.5rem;
+  }
+
+  .project-card__tech-tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.25rem 0.7rem;
+    border-radius: 50px;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    background: rgba(255, 255, 255, 0.55);
+    border: 1px solid var(--glass-border);
+    transition: var(--transition);
+    white-space: nowrap;
+  }
+
+  .project-card:hover .project-card__tech-tag {
+    border-color: color-mix(in srgb, var(--card-accent) 30%, transparent);
+    color: var(--text-primary);
+  }
+
+  /* ── Links ───────────────────────────────────────────── */
+  .project-card__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--glass-border);
+    margin-top: 0.75rem;
+  }
+
+  .project-card__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.45rem 1rem;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    background: rgba(255, 255, 255, 0.55);
+    border: 1px solid var(--glass-border);
+    text-decoration: none;
+    transition: var(--transition);
+    white-space: nowrap;
+  }
+
+  .project-card__link:hover {
+    color: var(--card-accent);
+    background: color-mix(in srgb, var(--card-accent) 10%, transparent);
+    border-color: color-mix(in srgb, var(--card-accent) 35%, transparent);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 15px color-mix(in srgb, var(--card-accent) 15%, transparent);
+  }
+
+  .project-card__link :global(svg) {
+    flex-shrink: 0;
+  }
+
+  /* ── Responsive ──────────────────────────────────────── */
+  @media (max-width: 900px) {
+    .projects-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .project-card--featured {
+      grid-column: span 1;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .projects-grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    .project-card__title {
+      font-size: 1.15rem;
+    }
+
+    .project-card__description {
+      font-size: 0.9rem;
+    }
+
+    .project-card__links {
+      flex-direction: column;
+    }
+
+    .project-card__link {
+      justify-content: center;
+    }
+  }
+</style>
+
+<script>
+  // Scroll-triggered reveal for project cards
+  document.addEventListener('DOMContentLoaded', () => {
+    const animateEls = document.querySelectorAll('#projects .animate-in');
+
+    if (animateEls.length) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+      );
+
+      animateEls.forEach((el) => observer.observe(el));
+    }
+
+    // Interactive gallery logic
+    const cards = document.querySelectorAll('.project-card');
+    cards.forEach((card) => {
+      const images = card.querySelectorAll('.project-card__gallery-img');
+      if (images.length <= 1) return;
+
+      const prevBtn = card.querySelector('.prev-btn');
+      const nextBtn = card.querySelector('.next-btn');
+      const labelEl = card.querySelector('.project-card__gallery-label');
+      const counterEl = card.querySelector('.project-card__gallery-counter');
+
+      let currentIndex = 0;
+
+      function updateGallery(index) {
+        images.forEach((img, idx) => {
+          if (idx === index) {
+            img.classList.add('active');
+          } else {
+            img.classList.remove('active');
+          }
+        });
+
+        const activeImg = images[index];
+        const label = activeImg.getAttribute('alt');
+        if (labelEl && label) labelEl.textContent = label;
+        if (counterEl) counterEl.textContent = `${index + 1} / ${images.length}`;
+        currentIndex = index;
+      }
+
+      if (prevBtn) {
+        prevBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          let newIndex = currentIndex - 1;
+          if (newIndex < 0) newIndex = images.length - 1;
+          updateGallery(newIndex);
+        });
+      }
+
+      if (nextBtn) {
+        nextBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          let newIndex = (currentIndex + 1) % images.length;
+          updateGallery(newIndex);
+        });
+      }
+    });
+  });
+</script>

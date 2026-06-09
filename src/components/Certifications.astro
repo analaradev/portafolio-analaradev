@@ -1,0 +1,177 @@
+---
+const certifications = [
+  {
+    name: 'Critical Career Skills - Generative AI Foundations',
+    issuer: 'Certiport / Pearson VUE',
+    platform: 'Credly',
+    url: 'https://www.credly.com/badges/3db37b68-547b-4242-a436-72a47493a6b8/public_url',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7z"/><path d="M9 21h6"/><path d="M9 18h6"/><path d="M12 2v3"/><path d="M8.5 5.5l-1.5-1.5"/><path d="M15.5 5.5l1.5-1.5"/><circle cx="12" cy="9" r="2"/></svg>`,
+    color: '#60725a',
+    description: 'Comprensón fundamental de IA generativa, aplicaciones y manejo ético',
+  },
+  {
+    name: 'IT Specialist - Databases',
+    issuer: 'Certiport / Pearson VUE',
+    platform: 'Credly',
+    url: 'https://www.credly.com/badges/174febca-5b0c-4031-9e85-7aecdc1456b1/public_url',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.66 4.03 3 9 3s9-1.34 9-3V5"/><path d="M3 12c0 1.66 4.03 3 9 3s9-1.34 9-3"/></svg>`,
+    color: '#879b80',
+    description: 'Diseño, administración y consulta de bases de datos relacionales',
+  },
+  {
+    name: 'IT Specialist - Data Analytics',
+    issuer: 'Certiport / Pearson VUE',
+    platform: 'Credly',
+    url: 'https://www.credly.com/badges/5fcd49fc-784f-49f7-b172-91a9ec172b46/public_url',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 16l4-8 4 4 4-6"/><circle cx="7" cy="16" r="1.5"/><circle cx="11" cy="8" r="1.5"/><circle cx="15" cy="12" r="1.5"/><circle cx="19" cy="6" r="1.5"/></svg>`,
+    color: '#a5b8a0',
+    description: 'Recolección, procesamiento y análisis de datos',
+  },
+  {
+    name: 'Google Cybersecurity Professional Certificate',
+    issuer: 'Google',
+    platform: 'Coursera',
+    url: 'https://coursera.org/share/f02f45c508f15db2b8a6a5e045996080',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>`,
+    color: '#6d8569',
+    description: 'Seguridad, redes, SIEM, IDS y respuesta a incidentes',
+  },
+  {
+    name: 'IT Specialist - Cybersecurity',
+    issuer: 'Certiport / Pearson VUE',
+    platform: 'Credly',
+    url: 'https://www.credly.com/badges/771efe29-9417-4feb-8110-1587503ee63f/public_url',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/><circle cx="12" cy="16" r="1.5"/><path d="M12 17.5V19"/></svg>`,
+    color: '#859680',
+    description: 'Amenazas, vulnerabilidades y controles de seguridad',
+  },
+];
+---
+
+<section id="certifications" class="section">
+  <div class="container">
+    <h2 class="section-title gradient-text">Certificaciones</h2>
+    <p class="section-subtitle">Credenciales verificables que respaldan mis habilidades</p>
+
+    <div class="cert-grid">
+      {certifications.map((cert) => (
+        <div class="cert-card glass-card animate-in" style={`--accent: ${cert.color};`}>
+          <div class="cert-accent-line" />
+          <div class="cert-content">
+            <div class="cert-icon-area">
+              <Fragment set:html={cert.icon} />
+            </div>
+            <h3 class="cert-name">{cert.name}</h3>
+            <span class="cert-issuer">{cert.issuer}</span>
+            <p class="cert-description">{cert.description}</p>
+          </div>
+          <div class="cert-footer">
+            <a href={cert.url} target="_blank" rel="noopener noreferrer" class="cert-verify-link">
+              Verificar
+              <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                <polyline points="15 3 21 3 21 9" />
+                <line x1="10" y1="14" x2="21" y2="3" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .cert-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2.5rem;
+  }
+
+  .cert-card {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                box-shadow 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .cert-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px color-mix(in srgb, var(--accent) 20%, transparent);
+  }
+
+  .cert-accent-line {
+    display: none;
+  }
+
+  .cert-content {
+    padding: 1.5rem 1.5rem 1rem;
+    flex: 1;
+  }
+
+  .cert-icon-area {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: color-mix(in srgb, var(--accent) 12%, transparent);
+    color: var(--accent);
+    margin-bottom: 1rem;
+  }
+
+  .cert-name {
+    font-weight: 600;
+    font-size: 1rem;
+    line-height: 1.4;
+    margin-bottom: 0.4rem;
+    color: var(--text-primary);
+  }
+
+  .cert-issuer {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-bottom: 0.75rem;
+  }
+
+  .cert-description {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    line-height: 1.55;
+    margin: 0;
+  }
+
+  .cert-footer {
+    padding: 0 1.5rem 1.5rem;
+  }
+
+  .cert-verify-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--accent);
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+  }
+
+  .cert-verify-link:hover {
+    text-decoration: underline;
+    opacity: 0.85;
+  }
+
+  .cert-verify-link svg {
+    flex-shrink: 0;
+  }
+
+  @media (max-width: 640px) {
+    .cert-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

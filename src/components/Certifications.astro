@@ -1,177 +1,380 @@
 ---
-const certifications = [
+const featuredCertificates = [
   {
-    name: 'Critical Career Skills - Generative AI Foundations',
+    title: 'Critical Career Skills - Generative AI Foundations',
     issuer: 'Certiport / Pearson VUE',
-    platform: 'Credly',
-    url: 'https://www.credly.com/badges/3db37b68-547b-4242-a436-72a47493a6b8/public_url',
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7z"/><path d="M9 21h6"/><path d="M9 18h6"/><path d="M12 2v3"/><path d="M8.5 5.5l-1.5-1.5"/><path d="M15.5 5.5l1.5-1.5"/><circle cx="12" cy="9" r="2"/></svg>`,
-    color: '#60725a',
-    description: 'Comprensón fundamental de IA generativa, aplicaciones y manejo ético',
+    issued: 'Mayo 25, 2026',
+    category: 'IA generativa',
+    preview: '/certificates/previews/generative-ai-foundations.png',
+    pdf: '/certificates/generative-ai-foundations.pdf',
+    verify: 'https://www.credly.com/badges/3db37b68-547b-4242-a436-72a47493a6b8/public_url',
+    summary: 'Fundamentos de IA generativa, aplicaciones prácticas, uso responsable y contexto profesional.',
   },
   {
-    name: 'IT Specialist - Databases',
+    title: 'IT Specialist - Databases',
     issuer: 'Certiport / Pearson VUE',
-    platform: 'Credly',
-    url: 'https://www.credly.com/badges/174febca-5b0c-4031-9e85-7aecdc1456b1/public_url',
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.66 4.03 3 9 3s9-1.34 9-3V5"/><path d="M3 12c0 1.66 4.03 3 9 3s9-1.34 9-3"/></svg>`,
-    color: '#879b80',
-    description: 'Diseño, administración y consulta de bases de datos relacionales',
+    issued: 'Mayo 25, 2026',
+    category: 'Bases de datos',
+    preview: '/certificates/previews/databases.png',
+    pdf: '/certificates/databases.pdf',
+    verify: 'https://www.credly.com/badges/174febca-5b0c-4031-9e85-7aecdc1456b1/public_url',
+    summary: 'Certificación en fundamentos de bases de datos relacionales, consulta, diseño y administración.',
   },
   {
-    name: 'IT Specialist - Data Analytics',
+    title: 'IT Specialist - Data Analytics',
     issuer: 'Certiport / Pearson VUE',
-    platform: 'Credly',
-    url: 'https://www.credly.com/badges/5fcd49fc-784f-49f7-b172-91a9ec172b46/public_url',
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 16l4-8 4 4 4-6"/><circle cx="7" cy="16" r="1.5"/><circle cx="11" cy="8" r="1.5"/><circle cx="15" cy="12" r="1.5"/><circle cx="19" cy="6" r="1.5"/></svg>`,
-    color: '#a5b8a0',
-    description: 'Recolección, procesamiento y análisis de datos',
+    issued: 'Mayo 14, 2026',
+    category: 'Analítica de datos',
+    preview: '/certificates/previews/data-analytics.png',
+    pdf: '/certificates/data-analytics.pdf',
+    verify: 'https://www.credly.com/badges/5fcd49fc-784f-49f7-b172-91a9ec172b46/public_url',
+    summary: 'Procesamiento, análisis e interpretación de datos para apoyar decisiones y reportes.',
   },
   {
-    name: 'Google Cybersecurity Professional Certificate',
-    issuer: 'Google',
-    platform: 'Coursera',
-    url: 'https://coursera.org/share/f02f45c508f15db2b8a6a5e045996080',
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>`,
-    color: '#6d8569',
-    description: 'Seguridad, redes, SIEM, IDS y respuesta a incidentes',
-  },
-  {
-    name: 'IT Specialist - Cybersecurity',
-    issuer: 'Certiport / Pearson VUE',
-    platform: 'Credly',
-    url: 'https://www.credly.com/badges/771efe29-9417-4feb-8110-1587503ee63f/public_url',
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/><circle cx="12" cy="16" r="1.5"/><path d="M12 17.5V19"/></svg>`,
-    color: '#859680',
-    description: 'Amenazas, vulnerabilidades y controles de seguridad',
+    title: 'Google Cybersecurity Professional Certificate',
+    issuer: 'Google / Coursera',
+    issued: 'Mayo 12, 2026',
+    category: 'Ciberseguridad',
+    preview: '/certificates/previews/google-cybersecurity.png',
+    pdf: '/certificates/google-cybersecurity.pdf',
+    verify: 'https://coursera.org/share/f02f45c508f15db2b8a6a5e045996080',
+    summary: 'Programa profesional de Google con fundamentos de seguridad, redes, Linux, SQL, SIEM, IDS y respuesta a incidentes.',
   },
 ];
 ---
 
-<section id="certifications" class="section">
+<section id="certifications" class="section certifications-section">
   <div class="container">
-    <h2 class="section-title gradient-text">Certificaciones</h2>
-    <p class="section-subtitle">Credenciales verificables que respaldan mis habilidades</p>
+    <div class="section-heading">
+      <div>
+        <h2 class="section-title gradient-text">Certificaciones</h2>
+        <p class="section-subtitle">Credenciales verificables que respaldan mis habilidades técnicas principales</p>
+      </div>
 
-    <div class="cert-grid">
-      {certifications.map((cert) => (
-        <div class="cert-card glass-card animate-in" style={`--accent: ${cert.color};`}>
-          <div class="cert-accent-line" />
-          <div class="cert-content">
-            <div class="cert-icon-area">
-              <Fragment set:html={cert.icon} />
+      <a href="/certificados" class="view-more-link">
+        Ver más
+        <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M5 12h14" />
+          <path d="M12 5l7 7-7 7" />
+        </svg>
+      </a>
+    </div>
+
+    <div class="featured-certificates">
+      {featuredCertificates.map((certificate) => (
+        <article class="featured-certificate-card animate-in">
+          <a href={certificate.pdf} target="_blank" rel="noopener noreferrer" class="featured-preview" aria-label={`Abrir PDF de ${certificate.title}`}>
+            <img src={certificate.preview} alt={`Vista previa del certificado ${certificate.title}`} loading="lazy" />
+          </a>
+
+          <div class="featured-body">
+            <span class="featured-category">{certificate.category}</span>
+            <h3>{certificate.title}</h3>
+            <p>{certificate.summary}</p>
+
+            <dl class="featured-meta">
+              <div>
+                <dt>Emisor</dt>
+                <dd>{certificate.issuer}</dd>
+              </div>
+              <div>
+                <dt>Fecha</dt>
+                <dd>{certificate.issued}</dd>
+              </div>
+            </dl>
+
+            <div class="featured-actions">
+              <a href={certificate.pdf} target="_blank" rel="noopener noreferrer" class="featured-primary">
+                Ver PDF
+                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                  <path d="M14 2v6h6" />
+                </svg>
+              </a>
+              <a href={certificate.verify} target="_blank" rel="noopener noreferrer" class="featured-secondary">
+                Verificar
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                  <path d="M15 3h6v6" />
+                  <path d="M10 14L21 3" />
+                </svg>
+              </a>
             </div>
-            <h3 class="cert-name">{cert.name}</h3>
-            <span class="cert-issuer">{cert.issuer}</span>
-            <p class="cert-description">{cert.description}</p>
           </div>
-          <div class="cert-footer">
-            <a href={cert.url} target="_blank" rel="noopener noreferrer" class="cert-verify-link">
-              Verificar
-              <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-                <polyline points="15 3 21 3 21 9" />
-                <line x1="10" y1="14" x2="21" y2="3" />
-              </svg>
-            </a>
-          </div>
-        </div>
+        </article>
       ))}
+    </div>
+
+    <div class="certificates-cta animate-in">
+      <a href="/certificados" class="btn-certificates">
+        Ver todos los certificados
+        <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+          <path d="M14 2v6h6" />
+          <path d="M9 15l2 2 4-4" />
+        </svg>
+      </a>
     </div>
   </div>
 </section>
 
 <style>
-  .cert-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 1.5rem;
-    margin-top: 2.5rem;
+  .certifications-section {
+    padding-top: 4.25rem;
   }
 
-  .cert-card {
+  .section-heading {
     display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-                box-shadow 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 2rem;
+    margin-bottom: 2.2rem;
   }
 
-  .cert-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 40px color-mix(in srgb, var(--accent) 20%, transparent);
+  .section-heading .section-subtitle {
+    margin-bottom: 0;
   }
 
-  .cert-accent-line {
-    display: none;
-  }
-
-  .cert-content {
-    padding: 1.5rem 1.5rem 1rem;
-    flex: 1;
-  }
-
-  .cert-icon-area {
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    display: flex;
+  .view-more-link {
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    background: color-mix(in srgb, var(--accent) 12%, transparent);
-    color: var(--accent);
+    gap: 0.45rem;
+    min-height: 42px;
+    padding: 0.62rem 0.95rem;
+    border-radius: 8px;
+    color: var(--accent-primary);
+    border: 1px solid rgba(96, 114, 90, 0.22);
+    background: rgba(255, 255, 255, 0.52);
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: transform 0.2s ease, background 0.2s ease;
+  }
+
+  .view-more-link:hover {
+    transform: translateY(-2px);
+    background: rgba(96, 114, 90, 0.08);
+  }
+
+  .featured-certificates {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.35rem;
+  }
+
+  .featured-certificate-card {
+    display: grid;
+    grid-template-columns: minmax(180px, 0.85fr) minmax(0, 1fr);
+    min-height: 285px;
+    background: rgba(255, 255, 255, 0.72);
+    border: 1px solid var(--glass-border);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 10px 28px rgba(96, 114, 90, 0.07);
+    transition: transform 0.28s ease, box-shadow 0.28s ease, background 0.28s ease;
+  }
+
+  .featured-certificate-card:hover {
+    transform: translateY(-4px);
+    background: rgba(255, 255, 255, 0.88);
+    box-shadow: 0 14px 36px rgba(96, 114, 90, 0.11);
+  }
+
+  .featured-preview {
+    display: block;
+    height: 100%;
+    min-height: 285px;
+    padding: 0.7rem;
+    background: #f8faf7;
+    border-right: 1px solid var(--glass-border);
+    overflow: hidden;
+  }
+
+  .featured-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+    transition: transform 0.3s ease;
+  }
+
+  .featured-certificate-card:hover .featured-preview img {
+    transform: scale(1.025);
+  }
+
+  .featured-body {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    padding: 1.2rem;
+  }
+
+  .featured-category {
+    width: fit-content;
+    margin-bottom: 0.65rem;
+    padding: 0.22rem 0.52rem;
+    border-radius: 6px;
+    background: rgba(96, 114, 90, 0.1);
+    color: var(--accent-primary);
+    font-size: 0.72rem;
+    font-weight: 750;
+  }
+
+  .featured-body h3 {
+    color: var(--text-primary);
+    font-size: 1.05rem;
+    line-height: 1.35;
+    margin-bottom: 0.55rem;
+  }
+
+  .featured-body p {
+    color: var(--text-secondary);
+    font-size: 0.86rem;
+    line-height: 1.55;
+    margin-bottom: 0.9rem;
+  }
+
+  .featured-meta {
+    display: grid;
+    gap: 0.5rem;
+    margin-top: auto;
     margin-bottom: 1rem;
   }
 
-  .cert-name {
-    font-weight: 600;
-    font-size: 1rem;
-    line-height: 1.4;
-    margin-bottom: 0.4rem;
-    color: var(--text-primary);
+  .featured-meta div {
+    display: grid;
+    grid-template-columns: 58px minmax(0, 1fr);
+    gap: 0.55rem;
   }
 
-  .cert-issuer {
-    display: block;
-    font-size: 0.8rem;
+  .featured-meta dt {
     color: var(--text-muted);
-    margin-bottom: 0.75rem;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
   }
 
-  .cert-description {
-    font-size: 0.85rem;
-    color: var(--text-secondary);
-    line-height: 1.55;
-    margin: 0;
+  .featured-meta dd {
+    color: var(--text-primary);
+    font-size: 0.8rem;
+    overflow-wrap: anywhere;
   }
 
-  .cert-footer {
-    padding: 0 1.5rem 1.5rem;
+  .featured-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.55rem;
   }
 
-  .cert-verify-link {
+  .featured-primary,
+  .featured-secondary {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 0.4rem;
+    min-height: 38px;
+    padding: 0.58rem 0.78rem;
+    border-radius: 8px;
     font-size: 0.8rem;
-    font-weight: 600;
-    color: var(--accent);
+    font-weight: 700;
     text-decoration: none;
-    transition: opacity 0.2s ease;
+    transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
   }
 
-  .cert-verify-link:hover {
-    text-decoration: underline;
-    opacity: 0.85;
+  .featured-primary {
+    color: #ffffff;
+    background: var(--accent-primary);
+    box-shadow: 0 8px 20px rgba(96, 114, 90, 0.18);
   }
 
-  .cert-verify-link svg {
-    flex-shrink: 0;
+  .featured-secondary {
+    color: var(--accent-primary);
+    border: 1px solid rgba(96, 114, 90, 0.22);
+    background: rgba(255, 255, 255, 0.52);
   }
 
-  @media (max-width: 640px) {
-    .cert-grid {
+  .featured-primary:hover,
+  .featured-secondary:hover {
+    transform: translateY(-2px);
+  }
+
+  .featured-secondary:hover {
+    background: rgba(96, 114, 90, 0.08);
+  }
+
+  .certificates-cta {
+    display: flex;
+    justify-content: center;
+    margin-top: 2.25rem;
+  }
+
+  .btn-certificates {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.55rem;
+    min-height: 44px;
+    padding: 0.8rem 1.45rem;
+    border-radius: 8px;
+    color: #ffffff;
+    background: var(--gradient-hero);
+    font-size: 0.92rem;
+    font-weight: 650;
+    text-decoration: none;
+    box-shadow: 0 8px 24px rgba(96, 114, 90, 0.14);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .btn-certificates:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 30px rgba(96, 114, 90, 0.2);
+  }
+
+  @media (max-width: 1080px) {
+    .featured-certificates {
       grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 680px) {
+    .section-heading {
+      align-items: flex-start;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .featured-certificate-card {
+      grid-template-columns: 1fr;
+      min-height: 0;
+    }
+
+    .featured-preview {
+      min-height: 0;
+      aspect-ratio: 1.38;
+      border-right: none;
+      border-bottom: 1px solid var(--glass-border);
+    }
+
+    .featured-body {
+      padding: 1.1rem;
+    }
+
+    .featured-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (max-width: 420px) {
+    .featured-actions {
+      grid-template-columns: 1fr;
+    }
+
+    .featured-meta div {
+      grid-template-columns: 1fr;
+      gap: 0.15rem;
     }
   }
 </style>

@@ -1,12 +1,13 @@
 ---
 // Navbar.astro — Premium sticky navigation with glassmorphism & mobile menu
 const navLinks = [
-  { label: 'Sobre mí', href: '#about' },
-  { label: 'Experiencia', href: '#experience' },
-  { label: 'Proyectos', href: '#projects' },
-  { label: 'Tech Stack', href: '#techstack' },
-  { label: 'Certificaciones', href: '#certifications' },
-  { label: 'Contacto', href: '#contact' },
+  { label: 'Sobre mí', href: '/#about' },
+  { label: 'Experiencia', href: '/#experience' },
+  { label: 'Proyectos', href: '/#projects' },
+  { label: 'Tech Stack', href: '/#techstack' },
+  { label: 'Certificaciones', href: '/#certifications' },
+  { label: 'Certificados', href: '/certificados' },
+  { label: 'Contacto', href: '/#contact' },
 ];
 ---
 
@@ -255,6 +256,7 @@ const navLinks = [
     .navbar__nav.open .navbar__links li:nth-child(4) { transition-delay: 0.26s; }
     .navbar__nav.open .navbar__links li:nth-child(5) { transition-delay: 0.32s; }
     .navbar__nav.open .navbar__links li:nth-child(6) { transition-delay: 0.38s; }
+    .navbar__nav.open .navbar__links li:nth-child(7) { transition-delay: 0.44s; }
 
     .navbar__link {
       display: block;
@@ -335,25 +337,30 @@ const navLinks = [
       link.addEventListener('click', (e) => {
         const href = link.getAttribute('href');
 
-        if (href && href.startsWith('#')) {
-          e.preventDefault();
-          const target = document.querySelector(href);
+        if (href && (href.startsWith('#') || href.startsWith('/#'))) {
+          const isHome = window.location.pathname === '/' || window.location.pathname === '/index.html' || window.location.pathname === '';
+          if (isHome) {
+            e.preventDefault();
+            const hashIndex = href.indexOf('#');
+            const hash = href.substring(hashIndex);
+            const target = document.querySelector(hash);
 
-          if (target) {
-            closeMenu();
+            if (target) {
+              closeMenu();
 
-            // Small delay so the mobile menu closes before scrolling
-            const delay = navMenu.classList.contains('open') ? 350 : 0;
-            setTimeout(() => {
-              const navbarHeight = navbar.offsetHeight;
-              const targetPosition =
-                target.getBoundingClientRect().top + window.scrollY - navbarHeight - 16;
+              // Small delay so the mobile menu closes before scrolling
+              const delay = navMenu.classList.contains('open') ? 350 : 0;
+              setTimeout(() => {
+                const navbarHeight = navbar.offsetHeight;
+                const targetPosition =
+                  target.getBoundingClientRect().top + window.scrollY - navbarHeight - 16;
 
-              window.scrollTo({
-                top: targetPosition,
-                behavior: 'smooth',
-              });
-            }, delay);
+                window.scrollTo({
+                  top: targetPosition,
+                  behavior: 'smooth',
+                });
+              }, delay);
+            }
           }
         }
       });
@@ -363,6 +370,9 @@ const navLinks = [
     const sections = document.querySelectorAll('section[id]');
 
     function highlightActiveLink() {
+      const isHome = window.location.pathname === '/' || window.location.pathname === '/index.html' || window.location.pathname === '';
+      if (!isHome) return;
+
       const scrollPos = window.scrollY + navbar.offsetHeight + 100;
 
       sections.forEach((section) => {
@@ -373,7 +383,8 @@ const navLinks = [
         if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
           navLinks.forEach((link) => {
             link.classList.remove('active');
-            if (link.getAttribute('href') === `#${sectionId}`) {
+            const href = link.getAttribute('href');
+            if (href === `#${sectionId}` || href === `/#${sectionId}`) {
               link.classList.add('active');
             }
           });

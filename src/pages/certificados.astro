@@ -1,0 +1,394 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+
+const certificates = [
+  {
+    title: 'IT Specialist - Databases',
+    issuer: 'Certiport / Pearson VUE',
+    platform: 'Information Technology Specialist',
+    issued: 'Mayo 25, 2026',
+    credential: 'wYS3H-2FvB',
+    category: 'Bases de datos',
+    preview: '/certificates/previews/databases.png',
+    pdf: '/certificates/databases.pdf',
+    verify: 'https://www.credly.com/badges/174febca-5b0c-4031-9e85-7aecdc1456b1/public_url',
+    summary: 'Certificación en fundamentos de bases de datos relacionales, consulta, diseño y administración.',
+  },
+  {
+    title: 'Critical Career Skills - Generative AI Foundations',
+    issuer: 'Certiport / Pearson VUE',
+    platform: 'Critical Career Skills',
+    issued: 'Mayo 25, 2026',
+    credential: 'M4Yz-s4m6',
+    category: 'IA generativa',
+    preview: '/certificates/previews/generative-ai-foundations.png',
+    pdf: '/certificates/generative-ai-foundations.pdf',
+    verify: 'https://www.credly.com/badges/3db37b68-547b-4242-a436-72a47493a6b8/public_url',
+    summary: 'Fundamentos de IA generativa, aplicaciones prácticas, uso responsable y contexto profesional.',
+  },
+  {
+    title: 'IT Specialist - Data Analytics',
+    issuer: 'Certiport / Pearson VUE',
+    platform: 'Information Technology Specialist',
+    issued: 'Mayo 14, 2026',
+    credential: 'MnEz-s4bx',
+    category: 'Analítica de datos',
+    preview: '/certificates/previews/data-analytics.png',
+    pdf: '/certificates/data-analytics.pdf',
+    verify: 'https://www.credly.com/badges/5fcd49fc-784f-49f7-b172-91a9ec172b46/public_url',
+    summary: 'Procesamiento, análisis e interpretación de datos para apoyar decisiones y reportes.',
+  },
+  {
+    title: 'Google Cybersecurity Professional Certificate',
+    issuer: 'Google / Coursera',
+    platform: 'Professional Certificate',
+    issued: 'Mayo 12, 2026',
+    credential: 'SBWWO1MAKA8X',
+    category: 'Ciberseguridad',
+    preview: '/certificates/previews/google-cybersecurity.png',
+    pdf: '/certificates/google-cybersecurity.pdf',
+    verify: 'https://coursera.org/share/f02f45c508f15db2b8a6a5e045996080',
+    summary: 'Programa profesional de Google con fundamentos de seguridad, redes, Linux, SQL, SIEM, IDS y respuesta a incidentes.',
+  },
+  {
+    title: 'IT Specialist - Cybersecurity',
+    issuer: 'Certiport / Pearson VUE',
+    platform: 'Information Technology Specialist',
+    issued: 'Mayo 20, 2026',
+    credential: 'w9MMq-FarL',
+    category: 'Ciberseguridad',
+    preview: '/certificates/previews/cybersecurity.png',
+    pdf: '/certificates/cybersecurity.pdf',
+    verify: 'https://www.credly.com/badges/771efe29-9417-4feb-8110-1587503ee63f/public_url',
+    summary: 'Conocimientos sobre amenazas, vulnerabilidades, controles y prácticas de protección de sistemas.',
+  },
+];
+---
+
+<Layout title="Certificados | Ana Patricia Hernández Lara">
+  <Navbar />
+
+  <main class="certificates-page">
+    <section class="certificates-hero">
+      <div class="container certificates-hero__inner">
+        <a href="/" class="back-link">
+          <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M19 12H5" />
+            <path d="M12 19l-7-7 7-7" />
+          </svg>
+          Inicio
+        </a>
+
+        <p class="eyebrow">Credenciales verificables</p>
+        <h1>Certificados</h1>
+        <p class="hero-copy">
+          Constancias en PDF y enlaces de verificación de certificaciones en bases de datos, analítica, IA generativa y ciberseguridad.
+        </p>
+      </div>
+    </section>
+
+    <section class="certificates-section">
+      <div class="container">
+        <div class="certificates-grid">
+          {certificates.map((certificate) => (
+            <article class="certificate-card">
+              <a href={certificate.pdf} target="_blank" rel="noopener noreferrer" class="certificate-preview" aria-label={`Abrir PDF de ${certificate.title}`}>
+                <img src={certificate.preview} alt={`Vista previa del certificado ${certificate.title}`} loading="lazy" />
+              </a>
+
+              <div class="certificate-body">
+                <span class="certificate-category">{certificate.category}</span>
+                <h2>{certificate.title}</h2>
+                <p class="certificate-summary">{certificate.summary}</p>
+
+                <dl class="certificate-meta">
+                  <div>
+                    <dt>Emisor</dt>
+                    <dd>{certificate.issuer}</dd>
+                  </div>
+                  <div>
+                    <dt>Fecha</dt>
+                    <dd>{certificate.issued}</dd>
+                  </div>
+                  <div>
+                    <dt>ID</dt>
+                    <dd>{certificate.credential}</dd>
+                  </div>
+                </dl>
+
+                <div class="certificate-actions">
+                  <a href={certificate.pdf} target="_blank" rel="noopener noreferrer" class="action-primary">
+                    Ver PDF
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                      <path d="M14 2v6h6" />
+                    </svg>
+                  </a>
+                  <a href={certificate.verify} target="_blank" rel="noopener noreferrer" class="action-secondary">
+                    Verificar
+                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                      <path d="M15 3h6v6" />
+                      <path d="M10 14L21 3" />
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  .certificates-page {
+    min-height: 100vh;
+    padding-top: 5.5rem;
+  }
+
+  .certificates-hero {
+    padding: 3rem 0 2rem;
+  }
+
+  .certificates-hero__inner {
+    max-width: 980px;
+  }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    min-height: 40px;
+    padding: 0.55rem 0;
+    color: var(--text-secondary);
+    font-size: 0.92rem;
+    font-weight: 650;
+    text-decoration: none;
+    transition: color 0.2s ease, transform 0.2s ease;
+  }
+
+  .back-link:hover {
+    color: var(--accent-primary);
+    transform: translateX(-2px);
+  }
+
+  .eyebrow {
+    margin-top: 2rem;
+    margin-bottom: 0.8rem;
+    color: var(--accent-primary);
+    font-size: 0.84rem;
+    font-weight: 750;
+    text-transform: uppercase;
+  }
+
+  .certificates-hero h1 {
+    color: var(--text-primary);
+    font-size: clamp(2.4rem, 5vw, 4.4rem);
+    line-height: 1;
+    margin-bottom: 1rem;
+  }
+
+  .hero-copy {
+    max-width: 760px;
+    color: var(--text-secondary);
+    font-size: 1.08rem;
+    line-height: 1.75;
+  }
+
+  .certificates-section {
+    padding: 1.5rem 0 5rem;
+  }
+
+  .certificates-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.4rem;
+  }
+
+  .certificate-card {
+    display: grid;
+    grid-template-columns: minmax(230px, 0.9fr) minmax(0, 1fr);
+    min-height: 310px;
+    background: rgba(255, 255, 255, 0.72);
+    border: 1px solid var(--glass-border);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 10px 28px rgba(96, 114, 90, 0.07);
+  }
+
+  .certificate-preview {
+    padding: 0.75rem;
+    display: block;
+    height: 100%;
+    min-height: 310px;
+    background: #f8faf7;
+    border-right: 1px solid var(--glass-border);
+    overflow: hidden;
+  }
+
+  .certificate-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+    transition: transform 0.3s ease;
+  }
+
+  .certificate-card:hover .certificate-preview img {
+    transform: scale(1.03);
+  }
+
+  .certificate-body {
+    display: flex;
+    flex-direction: column;
+    padding: 1.35rem;
+  }
+
+  .certificate-category {
+    width: fit-content;
+    margin-bottom: 0.8rem;
+    padding: 0.24rem 0.55rem;
+    border-radius: 6px;
+    background: rgba(96, 114, 90, 0.1);
+    color: var(--accent-primary);
+    font-size: 0.74rem;
+    font-weight: 750;
+  }
+
+  .certificate-body h2 {
+    color: var(--text-primary);
+    font-size: 1.15rem;
+    line-height: 1.35;
+    margin-bottom: 0.65rem;
+  }
+
+  .certificate-summary {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+
+  .certificate-meta {
+    display: grid;
+    gap: 0.65rem;
+    margin-top: auto;
+    margin-bottom: 1.15rem;
+  }
+
+  .certificate-meta div {
+    display: grid;
+    grid-template-columns: 64px minmax(0, 1fr);
+    gap: 0.6rem;
+  }
+
+  .certificate-meta dt {
+    color: var(--text-muted);
+    font-size: 0.74rem;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+
+  .certificate-meta dd {
+    color: var(--text-primary);
+    font-size: 0.84rem;
+    overflow-wrap: anywhere;
+  }
+
+  .certificate-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+  }
+
+  .action-primary,
+  .action-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.45rem;
+    min-height: 40px;
+    padding: 0.65rem 0.9rem;
+    border-radius: 8px;
+    font-size: 0.84rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  }
+
+  .action-primary {
+    color: #ffffff;
+    background: var(--accent-primary);
+    box-shadow: 0 8px 20px rgba(96, 114, 90, 0.18);
+  }
+
+  .action-secondary {
+    color: var(--accent-primary);
+    border: 1px solid rgba(96, 114, 90, 0.22);
+    background: rgba(255, 255, 255, 0.52);
+  }
+
+  .action-primary:hover,
+  .action-secondary:hover {
+    transform: translateY(-2px);
+  }
+
+  .action-secondary:hover {
+    background: rgba(96, 114, 90, 0.08);
+  }
+
+  @media (max-width: 1040px) {
+    .certificates-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 680px) {
+    .certificates-page {
+      padding-top: 4rem;
+    }
+
+    .certificates-hero {
+      padding-top: 2.4rem;
+    }
+
+    .certificates-grid,
+    .certificate-card {
+      grid-template-columns: 1fr;
+    }
+
+    .certificate-card {
+      min-height: 0;
+    }
+
+    .certificate-preview {
+      min-height: 0;
+      aspect-ratio: 1.38;
+      border-right: none;
+      border-bottom: 1px solid var(--glass-border);
+    }
+
+    .certificate-body {
+      padding: 1.1rem;
+    }
+
+    .certificate-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (max-width: 420px) {
+    .certificate-actions {
+      grid-template-columns: 1fr;
+    }
+
+    .certificate-meta div {
+      grid-template-columns: 1fr;
+      gap: 0.15rem;
+    }
+  }
+</style>

@@ -28,7 +28,7 @@ const projects: Project[] = [
     type: 'App Móvil + Sistema + POS',
     description:
       'Proyecto integral: aplicación móvil publicada, sistema interno de gestión y plataforma de punto de venta e inventario para librería.',
-    tech: ['Flutter', 'Dart', 'GetX', 'Clean Architecture', 'Laravel', 'PHP', 'CodeIgniter', 'SQL'],
+    tech: ['Flutter', 'Dart', 'GetX', 'Clean Architecture', 'Laravel', 'PHP', 'CodeIgniter', 'MySQL', 'phpMyAdmin'],
     category: 'mobile',
     links: [
       {
@@ -46,7 +46,7 @@ const projects: Project[] = [
       'App reconstruida desde cero',
       'Clean Architecture + GetX',
       'POS e inventario con Laravel',
-      'Optimización y rutas en CodeIgniter',
+      'MySQL administrado con phpMyAdmin',
     ],
     metrics: [
       { value: '2,572', label: 'sesiones iOS' },
@@ -72,12 +72,10 @@ const projects: Project[] = [
     type: 'Plataforma Administrativa',
     description:
       'Plataforma para gestión de flota vehicular, asignación de proyectos y control de datos operativos.',
-    tech: ['Laravel', 'PHP', 'SQL'],
+    tech: ['Laravel', 'PHP', 'MySQL'],
     category: 'web',
-    links: [
-      { label: 'GitHub', url: 'https://github.com/analaradev/client-petrotekno-control_interno' },
-    ],
-    highlights: ['Módulos de registro y consulta', 'Control de flota y proyectos', 'Sistema en producción'],
+    links: [],
+    highlights: ['Módulos de registro y consulta', 'Control de flota y proyectos', 'Gestión de datos con MySQL'],
     accentColor: '#879b80',
     screenshots: [
       { src: '/projects/petrotekno/dashboard.webp', label: 'Dashboard de Activos' },
@@ -90,13 +88,13 @@ const projects: Project[] = [
     type: 'Sitio Web Corporativo',
     description:
       'Rediseño y mejora de sitio web corporativo para presencia digital de firma de arquitectura.',
-    tech: ['Astro', 'HTML', 'CSS', 'JavaScript'],
+    tech: ['Astro', 'HTML', 'CSS', 'JavaScript', 'cPanel'],
     category: 'web',
     links: [
       { label: 'Sitio Web', url: 'https://urbanarquitectura.mx/' },
       { label: 'GitHub', url: 'https://github.com/analaradev/client-urbanarquitectura-web' },
     ],
-    highlights: ['Rediseño completo', 'Diseño responsivo', 'Identidad visual profesional'],
+    highlights: ['Rediseño completo', 'Diseño responsivo', 'Despliegue con cPanel'],
     accentColor: '#a5b8a0',
     screenshots: [
       { src: '/projects/urbanarquitectura/inicio.webp', label: 'Página de Inicio / Carrusel' },
@@ -123,38 +121,19 @@ const projects: Project[] = [
     ],
   },
   {
-    name: 'Impacta Control de Activos',
-    type: 'Sistema Web ERP',
-    description:
-      'Aplicación para la administración de activos, inventarios y flujos internos de recursos humanos en la empresa.',
-    tech: ['Angular', '.NET Core', 'C#', 'SQL Server', 'GitHub'],
-    category: 'web',
-    links: [
-      { label: 'GitHub', url: 'https://github.com/analaradev/proyecto_activos' }
-    ],
-    highlights: [
-      'Frontend reactivo con Angular',
-      'Backend robusto en .NET Core / C#',
-      'Flujos de consulta y auditoría'
-    ],
-    accentColor: '#60725a'
-  },
-  {
-    name: 'Revista Chavira',
+    name: 'Catálogo editorial web',
     type: 'Catálogo Editorial Web',
     description:
-      'Plataforma digital para la publicación y visualización del catálogo editorial y revista comercial de Grupo Chavira.',
+      'Plataforma digital para la publicación y visualización de un catálogo editorial y revista comercial.',
     tech: ['HTML', 'CSS', 'JavaScript'],
     category: 'web',
-    links: [
-      { label: 'GitHub', url: 'https://github.com/analaradev/client-chavira-revista' }
-    ],
+    links: [],
     highlights: [
-      'Visualización fluida de revista',
+      'Visualización fluida de catálogo y revista',
       'Diseño moderno y responsivo',
-      'Navegación sencilla sin dependencias'
+      'Navegación sencilla sin dependencias',
     ],
-    accentColor: '#879b80'
+    accentColor: '#879b80',
   },
   {
     name: 'Gestión Taller Mecánico',
@@ -377,15 +356,21 @@ function getLinkIcon(label: string, icon?: string): string {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
+    padding: 0.65rem 1rem;
+    border: 1px solid var(--glass-border);
+    border-radius: 50px;
+    background: var(--glass);
     font-size: 0.9rem;
     font-weight: 600;
     color: var(--text-secondary);
+    text-decoration: none;
     transition: var(--transition);
   }
 
   .btn-back-home:hover {
     color: var(--accent-primary);
-    transform: translateX(-4px);
+    transform: translateX(-3px);
+    border-color: rgba(96, 114, 90, 0.28);
   }
 
   .page-title {
@@ -1072,8 +1057,8 @@ function getLinkIcon(label: string, icon?: string): string {
 <script>
   document.addEventListener('DOMContentLoaded', () => {
     // ── Filter System ───────────────────────────────
-    const filterButtons = document.querySelectorAll('.filter-btn');
-    const projectCards = document.querySelectorAll('.project-card');
+    const filterButtons = document.querySelectorAll<HTMLButtonElement>('.filter-btn');
+    const projectCards = document.querySelectorAll<HTMLElement>('.project-card');
 
     filterButtons.forEach((btn) => {
       btn.addEventListener('click', () => {
@@ -1104,18 +1089,19 @@ function getLinkIcon(label: string, icon?: string): string {
     });
 
     // ── Lightbox Interactive Logic ──────────────────
-    const lightbox = document.getElementById('project-lightbox');
-    const lightboxImg = document.getElementById('lightbox-img');
-    const lightboxLabel = document.getElementById('lightbox-label');
-    const lightboxCounter = document.getElementById('lightbox-counter');
-    const lightboxClose = document.getElementById('lightbox-close');
-    const lightboxPrev = document.getElementById('lightbox-prev');
-    const lightboxNext = document.getElementById('lightbox-next');
+    const lightbox = document.getElementById('project-lightbox') as HTMLDialogElement | null;
+    const lightboxImg = document.getElementById('lightbox-img') as HTMLImageElement | null;
+    const lightboxLabel = document.getElementById('lightbox-label') as HTMLElement | null;
+    const lightboxCounter = document.getElementById('lightbox-counter') as HTMLElement | null;
+    const lightboxClose = document.getElementById('lightbox-close') as HTMLButtonElement | null;
+    const lightboxPrev = document.getElementById('lightbox-prev') as HTMLButtonElement | null;
+    const lightboxNext = document.getElementById('lightbox-next') as HTMLButtonElement | null;
 
-    let currentGallery = [];
+    type GalleryItem = { src: string; label: string };
+    let currentGallery: GalleryItem[] = [];
     let currentImgIndex = 0;
 
-    function openLightbox(images, index) {
+    function openLightbox(images: GalleryItem[], index: number) {
       if (!lightbox) return;
       currentGallery = images;
       currentImgIndex = index;
@@ -1144,7 +1130,7 @@ function getLinkIcon(label: string, icon?: string): string {
       });
     }
 
-    function navigateLightbox(direction) {
+    function navigateLightbox(direction: number) {
       if (!currentGallery.length) return;
       currentImgIndex = (currentImgIndex + direction + currentGallery.length) % currentGallery.length;
       updateLightboxImage();
@@ -1192,14 +1178,14 @@ function getLinkIcon(label: string, icon?: string): string {
 
     // Cards interactive gallery
     projectCards.forEach((card) => {
-      const images = card.querySelectorAll('.project-card__gallery-img');
-      const viewport = card.querySelector('.project-card__gallery-viewport');
+      const images = card.querySelectorAll<HTMLImageElement>('.project-card__gallery-img');
+      const viewport = card.querySelector<HTMLElement>('.project-card__gallery-viewport');
       if (images.length === 0) return;
 
-      const prevBtn = card.querySelector('.prev-btn');
-      const nextBtn = card.querySelector('.next-btn');
-      const labelEl = card.querySelector('.project-card__gallery-label');
-      const counterEl = card.querySelector('.project-card__gallery-counter');
+      const prevBtn = card.querySelector<HTMLButtonElement>('.prev-btn');
+      const nextBtn = card.querySelector<HTMLButtonElement>('.next-btn');
+      const labelEl = card.querySelector<HTMLElement>('.project-card__gallery-label');
+      const counterEl = card.querySelector<HTMLElement>('.project-card__gallery-counter');
 
       let currentIndex = 0;
 
@@ -1208,7 +1194,7 @@ function getLinkIcon(label: string, icon?: string): string {
         label: img.getAttribute('alt') || '',
       }));
 
-      function updateGallery(index) {
+      function updateGallery(index: number) {
         images.forEach((img, idx) => {
           if (idx === index) {
             img.classList.add('active');

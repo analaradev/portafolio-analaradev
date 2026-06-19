@@ -280,10 +280,10 @@ const navLinks = [
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
-    const navbar = document.getElementById('navbar');
-    const navMenu = document.getElementById('navMenu');
-    const hamburgerBtn = document.getElementById('hamburgerBtn');
-    const navOverlay = document.getElementById('navOverlay');
+    const navbar = document.getElementById('navbar') as HTMLElement;
+    const navMenu = document.getElementById('navMenu') as HTMLElement;
+    const hamburgerBtn = document.getElementById('hamburgerBtn') as HTMLButtonElement;
+    const navOverlay = document.getElementById('navOverlay') as HTMLElement;
     const navLinks = document.querySelectorAll('.navbar__link');
 
     if (!navbar || !navMenu || !hamburgerBtn || !navOverlay) return;
@@ -367,7 +367,7 @@ const navLinks = [
     });
 
     // ── Active link tracking on scroll ──────────────
-    const sections = document.querySelectorAll('section[id]');
+    const sections = document.querySelectorAll<HTMLElement>('section[id]');
 
     function highlightActiveLink() {
       const isHome = window.location.pathname === '/' || window.location.pathname === '/index.html' || window.location.pathname === '';

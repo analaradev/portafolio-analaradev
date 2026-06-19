@@ -2,16 +2,30 @@
 // Experience.astro — Professional experience timeline with glassmorphism cards
 const experiences = [
   {
-    company: 'IMPACTA SOLUCIONES RRHH S.A.S. DE C.V.',
-    role: 'Prácticas profesionales / Desarrollo web',
-    date: 'Febrero 2026 – Actualidad',
+    company: 'Desarrollo freelance / Consultoría de software',
+    role: 'Desarrolladora de Software Freelance',
+    date: 'Enero 2024 – Actualidad',
     current: true,
-    techStack: ['Angular', '.NET Core', 'C#', 'SQL Server', 'GitHub'],
+    techStack: ['Flutter', 'Dart', 'GetX', 'Clean Architecture', 'Laravel', 'PHP', 'CodeIgniter', 'MySQL', 'phpMyAdmin', 'APIs REST', 'Hostinger'],
     description: [
-      'Desarrollo de aplicación web para administración y control de activos',
-      'Implementación de funcionalidades de registro, consulta y gestión',
-      'Frontend con Angular y backend con .NET/.NET Core y C#',
-      'Base de datos SQL Server y control de versiones con GitHub',
+      'Pan de Vida: aplicación móvil publicada, sistema administrativo, punto de venta e inventario',
+      'Reconstrucción de aplicación móvil con Flutter, Dart, GetX y Clean Architecture',
+      'Mantenimiento y evolución de funcionalidades según las necesidades del cliente',
+      'Base de datos MySQL administrada con phpMyAdmin',
+      '2,572 sesiones iOS y audiencia instalada Android entre 290 y 328 usuarios en reportes recientes',
+    ],
+  },
+  {
+    company: 'IMPACTA SOLUCIONES RRHH S.A.S. DE C.V.',
+    role: 'Prácticas profesionales / Formación en desarrollo web',
+    date: 'Marzo 2026 – Actualidad',
+    current: true,
+    techStack: ['Angular (en formación)', '.NET Core (en formación)', 'C# (en formación)', 'Clean Architecture (en formación)', 'SQL Server (en formación)'],
+    description: [
+      'Prácticas enfocadas en aprendizaje y preparación técnica para integrarme posteriormente a un proyecto interno',
+      'Capacitación individual en Angular, .NET/.NET Core, C# y principios de Clean Architecture',
+      'Ejercicios y revisión de código con orientación puntual de mi jefe',
+      'Fortalecimiento de fundamentos de SQL Server para gestión de información',
     ],
   },
   {
@@ -19,23 +33,23 @@ const experiences = [
     role: 'Desarrolladora de Software',
     date: 'Enero 2023 – Febrero 2026',
     current: false,
-    techStack: ['Flutter', 'Dart', 'Laravel', 'PHP', 'CodeIgniter', 'Astro', 'JavaScript', 'SQL'],
+    techStack: ['Flutter', 'Dart', 'Laravel', 'PHP', 'Astro', 'JavaScript', 'MySQL', 'Hostinger', 'cPanel'],
     description: [
-      'Desarrollo y mantenimiento de aplicaciones móviles, sistemas internos y plataformas',
-      'Proyectos de software completos: desde mejoras de interfaz hasta despliegue y soporte',
-      'Aplicaciones móviles Flutter, sistemas PHP/CodeIgniter, plataformas Laravel, sitios Astro',
-      'Corrección de fallos, documentación, administración de bases de datos y publicación',
+      'Participación en Urban Arquitectura, Petrotekno Control Interno y Vida Saludable',
+      'Desarrollo y mantenimiento de sitios corporativos, sistemas administrativos y aplicaciones móviles',
+      'Trabajo con Flutter, Laravel/PHP, Astro, HTML, CSS, JavaScript, SQL, Hostinger y cPanel',
+      'Mejoras de interfaz, corrección de fallos, documentación, bases de datos, despliegues y soporte',
     ],
   },
 ];
 
 /* Tech badge color mappings */
 const techColors: Record<string, { bg: string; border: string; color: string }> = {
-  Angular:      { bg: 'rgba(96, 114, 90, 0.08)',   border: 'rgba(96, 114, 90, 0.20)',   color: '#384534' },
-  '.NET Core':  { bg: 'rgba(135, 155, 128, 0.08)',  border: 'rgba(135, 155, 128, 0.20)',  color: '#5e6f5a' },
-  'C#':         { bg: 'rgba(165, 184, 160, 0.12)',  border: 'rgba(165, 184, 160, 0.25)',  color: '#384534' },
-  'SQL Server': { bg: 'rgba(133, 150, 128, 0.08)',  border: 'rgba(133, 150, 128, 0.20)',  color: '#5e6f5a' },
-  GitHub:       { bg: 'rgba(96, 114, 90, 0.05)',   border: 'rgba(96, 114, 90, 0.15)',   color: '#5e6f5a' },
+  'Angular (en formación)': { bg: 'rgba(96, 114, 90, 0.08)', border: 'rgba(96, 114, 90, 0.20)', color: '#384534' },
+  '.NET Core (en formación)': { bg: 'rgba(135, 155, 128, 0.08)', border: 'rgba(135, 155, 128, 0.20)', color: '#5e6f5a' },
+  'C# (en formación)': { bg: 'rgba(165, 184, 160, 0.12)', border: 'rgba(165, 184, 160, 0.25)', color: '#384534' },
+  'Clean Architecture (en formación)': { bg: 'rgba(96, 114, 90, 0.05)', border: 'rgba(96, 114, 90, 0.15)', color: '#5e6f5a' },
+  'SQL Server (en formación)': { bg: 'rgba(133, 150, 128, 0.08)', border: 'rgba(133, 150, 128, 0.20)', color: '#5e6f5a' },
   Flutter:      { bg: 'rgba(96, 114, 90, 0.08)',   border: 'rgba(96, 114, 90, 0.20)',   color: '#384534' },
   Dart:         { bg: 'rgba(135, 155, 128, 0.08)',  border: 'rgba(135, 155, 128, 0.20)',  color: '#5e6f5a' },
   Laravel:      { bg: 'rgba(96, 114, 90, 0.08)',   border: 'rgba(96, 114, 90, 0.20)',   color: '#384534' },
@@ -57,7 +71,7 @@ const defaultColor = { bg: 'rgba(96, 114, 90, 0.08)', border: 'rgba(96, 114, 90,
 
     <!-- Timeline -->
     <div class="timeline">
-      {experiences.map((exp, index) => {
+      {experiences.map((exp) => {
         return (
           <div class={`timeline__item animate-in`}>
             <!-- Dot on the line -->

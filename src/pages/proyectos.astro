@@ -224,7 +224,7 @@ function getLinkIcon(label: string, icon?: string): string {
       <div class="projects-grid" id="projects-grid">
         {projects.map((project) => (
           <article
-            class="project-card glass-card animate-in visible"
+            class={`project-card glass-card animate-in visible ${project.featured ? 'project-card--featured' : ''}`}
             data-category={project.category}
             style={`--card-accent: ${project.accentColor};`}
           >
@@ -470,6 +470,48 @@ function getLinkIcon(label: string, icon?: string): string {
     flex-direction: column;
     gap: 1rem;
     flex: 1;
+  }
+
+  .project-card--featured {
+    grid-column: 1 / -1;
+  }
+
+  .project-card--featured .project-card__content {
+    min-width: 0;
+  }
+
+  @media (min-width: 900px) {
+    .project-card--featured {
+      display: grid;
+      grid-template-columns: minmax(0, 0.95fr) minmax(420px, 1.25fr);
+      align-items: stretch;
+      gap: 1.5rem;
+      min-height: 430px;
+    }
+
+    .project-card--featured .project-card__title {
+      font-size: 1.65rem;
+    }
+
+    .project-card--featured .project-card__description {
+      font-size: 1rem;
+      max-width: 62ch;
+    }
+
+    .project-card--featured .project-card__metrics {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .project-card--featured .project-card__gallery {
+      min-height: 100%;
+      margin-top: 0;
+    }
+
+    .project-card--featured .project-card__gallery-viewport {
+      flex: 1;
+      aspect-ratio: auto;
+      min-height: 330px;
+    }
   }
 
   .project-card::before {

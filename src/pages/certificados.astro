@@ -86,186 +86,159 @@ const certificates = [
   <Navbar />
 
   <main class="certificates-page">
-    <section class="certificates-hero">
-      <div class="container certificates-hero__inner">
-        <a href="/" class="back-link">
+    <div class="container">
+      <div class="back-home-wrapper animate-in visible">
+        <a href="/" class="btn-back-home">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <line x1="19" y1="12" x2="5" y2="12"></line>
             <polyline points="12 19 5 12 12 5"></polyline>
           </svg>
           Volver al inicio
         </a>
-
-        <p class="eyebrow">Credenciales verificables</p>
-        <h1>Certificados</h1>
-        <p class="hero-copy">
-          Constancias en PDF y enlaces de verificación de certificaciones en bases de datos, analítica, IA generativa y ciberseguridad.
-        </p>
       </div>
-    </section>
 
-    <section class="certificates-showcase">
-      <div class="container">
-        <div class="certificates-grid">
-          {certificates.map((certificate) => (
-            <article
-              class={`certificate-card glass-card animate-in visible ${certificate.featured ? 'certificate-card--featured' : ''}`}
-              style={`--card-accent: ${certificate.accentColor};`}
-            >
-              <div class="certificate-card__glow" />
+      <h1 class="page-title gradient-text animate-in visible">Certificados</h1>
+      <p class="page-subtitle animate-in visible">Constancias en PDF y enlaces de verificación de certificaciones en bases de datos, analítica, IA generativa y ciberseguridad.</p>
 
-              <div class="certificate-card__content">
-                <div class="certificate-card__header">
-                  <span class="certificate-card__type">{certificate.category}</span>
-                  {certificate.featured && (
-                    <span class="certificate-card__featured-badge">
-                      <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-                      </svg>
-                      Destacado
-                    </span>
-                  )}
-                </div>
+      <div class="certificates-grid">
+        {certificates.map((certificate) => (
+          <article
+            class={`certificate-card glass-card animate-in visible ${certificate.featured ? 'certificate-card--featured' : ''}`}
+            style={`--card-accent: ${certificate.accentColor};`}
+          >
+            <div class="certificate-card__glow" />
 
-                <h2 class="certificate-card__title">{certificate.title}</h2>
-                <p class="certificate-card__description">{certificate.summary}</p>
-
-                <ul class="certificate-card__highlights">
-                  {certificate.highlights.map((highlight) => (
-                    <li class="certificate-card__highlight">
-                      <svg class="certificate-card__check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                        <polyline points="20 6 9 17 4 12" />
-                      </svg>
-                      {highlight}
-                    </li>
-                  ))}
-                </ul>
-
-                <dl class="certificate-card__meta">
-                  <div>
-                    <dt>Emisor</dt>
-                    <dd>{certificate.issuer}</dd>
-                  </div>
-                  <div>
-                    <dt>Fecha</dt>
-                    <dd>{certificate.issued}</dd>
-                  </div>
-                  <div>
-                    <dt>ID</dt>
-                    <dd>{certificate.credential}</dd>
-                  </div>
-                </dl>
-
-                <div class="certificate-card__tags-links">
-                  <div class="certificate-card__tags">
-                    {certificate.tags.map((tag) => (
-                      <span class="certificate-card__tag">{tag}</span>
-                    ))}
-                  </div>
-
-                  <div class="certificate-card__links">
-                    <a href={certificate.pdf} target="_blank" rel="noopener noreferrer" class="certificate-card__link">
-                      Ver PDF
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-                        <path d="M14 2v6h6" />
-                      </svg>
-                    </a>
-                    <a href={certificate.verify} target="_blank" rel="noopener noreferrer" class="certificate-card__link">
-                      Verificar
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-                        <path d="M15 3h6v6" />
-                        <path d="M10 14L21 3" />
-                      </svg>
-                    </a>
-                  </div>
-                </div>
+            <div class="certificate-card__content">
+              <div class="certificate-card__header">
+                <span class="certificate-card__type">{certificate.category}</span>
+                {certificate.featured && (
+                  <span class="certificate-card__featured-badge">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                      <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                    </svg>
+                    Destacado
+                  </span>
+                )}
               </div>
 
-              <a href={certificate.pdf} target="_blank" rel="noopener noreferrer" class="certificate-card__gallery" aria-label={`Abrir PDF de ${certificate.title}`}>
-                <div class="certificate-card__gallery-viewport">
-                  <img src={certificate.preview} alt={`Vista previa del certificado ${certificate.title}`} loading="lazy" />
+              <h2 class="certificate-card__title">{certificate.title}</h2>
+              <p class="certificate-card__description">{certificate.summary}</p>
+
+              <ul class="certificate-card__highlights">
+                {certificate.highlights.map((highlight) => (
+                  <li class="certificate-card__highlight">
+                    <svg class="certificate-card__check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <polyline points="20 6 9 17 4 12" />
+                    </svg>
+                    {highlight}
+                  </li>
+                ))}
+              </ul>
+
+              <dl class="certificate-card__meta">
+                <div>
+                  <dt>Emisor</dt>
+                  <dd>{certificate.issuer}</dd>
                 </div>
-                <div class="certificate-card__gallery-caption">
-                  <span class="certificate-card__gallery-label">{certificate.platform}</span>
-                  <span class="certificate-card__gallery-counter">PDF</span>
+                <div>
+                  <dt>Fecha</dt>
+                  <dd>{certificate.issued}</dd>
                 </div>
-              </a>
-            </article>
-          ))}
-        </div>
+                <div>
+                  <dt>ID</dt>
+                  <dd>{certificate.credential}</dd>
+                </div>
+              </dl>
+
+              <div class="certificate-card__tags-links">
+                <div class="certificate-card__tags">
+                  {certificate.tags.map((tag) => (
+                    <span class="certificate-card__tag">{tag}</span>
+                  ))}
+                </div>
+
+                <div class="certificate-card__links">
+                  <a href={certificate.pdf} target="_blank" rel="noopener noreferrer" class="certificate-card__link">
+                    Ver PDF
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                      <path d="M14 2v6h6" />
+                    </svg>
+                  </a>
+                  <a href={certificate.verify} target="_blank" rel="noopener noreferrer" class="certificate-card__link">
+                    Verificar
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                      <path d="M15 3h6v6" />
+                      <path d="M10 14L21 3" />
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <a href={certificate.pdf} target="_blank" rel="noopener noreferrer" class="certificate-card__gallery" aria-label={`Abrir PDF de ${certificate.title}`}>
+              <div class="certificate-card__gallery-viewport">
+                <img src={certificate.preview} alt={`Vista previa del certificado ${certificate.title}`} loading="lazy" />
+              </div>
+              <div class="certificate-card__gallery-caption">
+                <span class="certificate-card__gallery-label">{certificate.platform}</span>
+                <span class="certificate-card__gallery-counter">PDF</span>
+              </div>
+            </a>
+          </article>
+        ))}
       </div>
-    </section>
+    </div>
   </main>
 </Layout>
 
 <style>
   .certificates-page {
+    padding: 8rem 0 6rem;
+    background: linear-gradient(
+      180deg,
+      var(--bg-primary) 0%,
+      var(--bg-secondary) 50%,
+      var(--bg-primary) 100%
+    );
     min-height: 100vh;
-    padding-top: 5.5rem;
   }
 
-  .certificates-hero {
-    padding: 3rem 0 2rem;
+  .back-home-wrapper {
+    margin-bottom: 2rem;
   }
 
-  .certificates-hero__inner {
-    max-width: 980px;
-  }
-
-  .back-link {
+  .btn-back-home {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    padding: 0.65rem 1rem;
-    border: 1px solid var(--glass-border);
-    border-radius: 50px;
-    background: var(--glass);
-    color: var(--text-secondary);
     font-size: 0.9rem;
     font-weight: 600;
+    color: var(--text-secondary);
     text-decoration: none;
     transition: var(--transition);
   }
 
-  .back-link:hover {
+  .btn-back-home:hover {
     color: var(--accent-primary);
-    transform: translateX(-3px);
-    border-color: rgba(96, 114, 90, 0.28);
+    transform: translateX(-4px);
   }
 
-  .eyebrow {
-    margin-top: 2rem;
-    margin-bottom: 0.8rem;
-    color: var(--accent-primary);
-    font-size: 0.84rem;
-    font-weight: 750;
-    text-transform: uppercase;
+  .page-title {
+    font-size: 2.75rem;
+    font-weight: 800;
+    margin-bottom: 0.75rem;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
   }
 
-  .certificates-hero h1 {
-    color: var(--text-primary);
-    font-size: clamp(2.4rem, 5vw, 4.4rem);
-    line-height: 1;
-    margin-bottom: 1rem;
-  }
-
-  .hero-copy {
-    max-width: 760px;
+  .page-subtitle {
+    font-size: 1.15rem;
     color: var(--text-secondary);
-    font-size: 1.08rem;
-    line-height: 1.75;
-  }
-
-  .certificates-showcase {
-    padding: 1.5rem 0 5rem;
-    background: linear-gradient(
-      180deg,
-      var(--bg-primary) 0%,
-      var(--bg-secondary) 52%,
-      var(--bg-primary) 100%
-    );
+    max-width: 700px;
+    margin-bottom: 3rem;
+    line-height: 1.7;
   }
 
   .certificates-grid {
@@ -579,11 +552,16 @@ const certificates = [
 
   @media (max-width: 480px) {
     .certificates-page {
-      padding-top: 4rem;
+      padding: 6rem 0 4rem;
     }
 
-    .certificates-hero {
-      padding-top: 2.4rem;
+    .page-title {
+      font-size: 2rem;
+    }
+
+    .page-subtitle {
+      font-size: 1rem;
+      margin-bottom: 2rem;
     }
 
     .certificates-grid {

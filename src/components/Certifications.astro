@@ -9,6 +9,10 @@ const featuredCertificates = [
     pdf: '/certificates/generative-ai-foundations.pdf',
     verify: 'https://www.credly.com/badges/3db37b68-547b-4242-a436-72a47493a6b8/public_url',
     summary: 'Fundamentos de IA generativa, aplicaciones prácticas, uso responsable y contexto profesional.',
+    highlights: ['Uso responsable de IA', 'Aplicaciones profesionales', 'Fundamentos actuales'],
+    tags: ['IA Generativa', 'Certiport', 'Pearson VUE'],
+    accentColor: '#60725a',
+    featured: true,
   },
   {
     title: 'IT Specialist - Databases',
@@ -19,6 +23,9 @@ const featuredCertificates = [
     pdf: '/certificates/databases.pdf',
     verify: 'https://www.credly.com/badges/174febca-5b0c-4031-9e85-7aecdc1456b1/public_url',
     summary: 'Certificación en fundamentos de bases de datos relacionales, consulta, diseño y administración.',
+    highlights: ['Diseño relacional', 'Consultas SQL', 'Administración de datos'],
+    tags: ['Databases', 'SQL', 'ITS'],
+    accentColor: '#879b80',
   },
   {
     title: 'IT Specialist - Data Analytics',
@@ -29,6 +36,9 @@ const featuredCertificates = [
     pdf: '/certificates/data-analytics.pdf',
     verify: 'https://www.credly.com/badges/5fcd49fc-784f-49f7-b172-91a9ec172b46/public_url',
     summary: 'Procesamiento, análisis e interpretación de datos para apoyar decisiones y reportes.',
+    highlights: ['Análisis de datos', 'Interpretación', 'Reportes'],
+    tags: ['Analytics', 'Data', 'ITS'],
+    accentColor: '#a5b8a0',
   },
   {
     title: 'Google Cybersecurity Professional Certificate',
@@ -39,79 +49,99 @@ const featuredCertificates = [
     pdf: '/certificates/google-cybersecurity.pdf',
     verify: 'https://coursera.org/share/f02f45c508f15db2b8a6a5e045996080',
     summary: 'Programa profesional de Google con fundamentos de seguridad, redes, Linux, SQL, SIEM, IDS y respuesta a incidentes.',
+    highlights: ['Seguridad y redes', 'Linux y SQL', 'Respuesta a incidentes'],
+    tags: ['Google', 'Cybersecurity', 'Coursera'],
+    accentColor: '#6d8569',
   },
 ];
 ---
 
-<section id="certifications" class="section certifications-section">
+<section id="certifications" class="section certificates-section-home">
   <div class="container">
-    <div class="section-heading">
-      <div>
-        <h2 class="section-title gradient-text">Certificaciones</h2>
-        <p class="section-subtitle">Credenciales verificables que respaldan mis habilidades técnicas principales</p>
-      </div>
+    <h2 class="section-title gradient-text animate-in">Certificaciones</h2>
+    <p class="section-subtitle animate-in">Credenciales verificables que respaldan mis habilidades técnicas principales</p>
 
-      <a href="/certificados" class="view-more-link">
-        Ver más
-        <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M5 12h14" />
-          <path d="M12 5l7 7-7 7" />
-        </svg>
-      </a>
-    </div>
-
-    <div class="featured-certificates">
+    <div class="certificates-grid-home">
       {featuredCertificates.map((certificate) => (
-        <article class="featured-certificate-card animate-in">
-          <a href={certificate.pdf} target="_blank" rel="noopener noreferrer" class="featured-preview" aria-label={`Abrir PDF de ${certificate.title}`}>
-            <img src={certificate.preview} alt={`Vista previa del certificado ${certificate.title}`} loading="lazy" />
-          </a>
+        <article
+          class={`certificate-card-home glass-card animate-in ${certificate.featured ? 'certificate-card-home--featured' : ''}`}
+          style={`--card-accent: ${certificate.accentColor};`}
+        >
+          <div class="certificate-card-home__glow" />
 
-          <div class="featured-body">
-            <span class="featured-category">{certificate.category}</span>
-            <h3>{certificate.title}</h3>
-            <p>{certificate.summary}</p>
+          <div class="certificate-card-home__content">
+            <div class="certificate-card-home__header">
+              <span class="certificate-card-home__type">{certificate.category}</span>
+              {certificate.featured && (
+                <span class="certificate-card-home__featured-badge">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                  </svg>
+                  Destacado
+                </span>
+              )}
+            </div>
 
-            <dl class="featured-meta">
-              <div>
-                <dt>Emisor</dt>
-                <dd>{certificate.issuer}</dd>
+            <h3 class="certificate-card-home__title">{certificate.title}</h3>
+            <p class="certificate-card-home__description">{certificate.summary}</p>
+
+            <ul class="certificate-card-home__highlights">
+              {certificate.highlights.map((highlight) => (
+                <li class="certificate-card-home__highlight">
+                  <svg class="certificate-card-home__check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg>
+                  {highlight}
+                </li>
+              ))}
+            </ul>
+
+            <div class="certificate-card-home__tags-links">
+              <div class="certificate-card-home__tags">
+                {certificate.tags.map((tag) => (
+                  <span class="certificate-card-home__tag">{tag}</span>
+                ))}
               </div>
-              <div>
-                <dt>Fecha</dt>
-                <dd>{certificate.issued}</dd>
-              </div>
-            </dl>
 
-            <div class="featured-actions">
-              <a href={certificate.pdf} target="_blank" rel="noopener noreferrer" class="featured-primary">
-                Ver PDF
-                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-                  <path d="M14 2v6h6" />
-                </svg>
-              </a>
-              <a href={certificate.verify} target="_blank" rel="noopener noreferrer" class="featured-secondary">
-                Verificar
-                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-                  <path d="M15 3h6v6" />
-                  <path d="M10 14L21 3" />
-                </svg>
-              </a>
+              <div class="certificate-card-home__links">
+                <a href={certificate.pdf} target="_blank" rel="noopener noreferrer" class="certificate-card-home__link">
+                  Ver PDF
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                    <path d="M14 2v6h6" />
+                  </svg>
+                </a>
+                <a href={certificate.verify} target="_blank" rel="noopener noreferrer" class="certificate-card-home__link">
+                  Verificar
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                    <path d="M15 3h6v6" />
+                    <path d="M10 14L21 3" />
+                  </svg>
+                </a>
+              </div>
             </div>
           </div>
+
+          <a href={certificate.pdf} target="_blank" rel="noopener noreferrer" class="certificate-card-home__gallery" aria-label={`Abrir PDF de ${certificate.title}`}>
+            <div class="certificate-card-home__gallery-viewport">
+              <img src={certificate.preview} alt={`Vista previa del certificado ${certificate.title}`} loading="lazy" />
+            </div>
+            <div class="certificate-card-home__gallery-caption">
+              <span>{certificate.issuer}</span>
+              <span>{certificate.issued}</span>
+            </div>
+          </a>
         </article>
       ))}
     </div>
 
-    <div class="certificates-cta animate-in">
-      <a href="/certificados" class="btn-certificates">
-        Ver todos los certificados
-        <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-          <path d="M14 2v6h6" />
-          <path d="M9 15l2 2 4-4" />
+    <div class="certificates-more-cta animate-in">
+      <a href="/certificados" class="btn-more-certificates">
+        <span>Ver más certificados</span>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
         </svg>
       </a>
     </div>
@@ -119,262 +149,350 @@ const featuredCertificates = [
 </section>
 
 <style>
-  .certifications-section {
-    padding-top: 4.25rem;
+  .certificates-section-home {
+    background: linear-gradient(
+      180deg,
+      var(--bg-primary) 0%,
+      var(--bg-secondary) 50%,
+      var(--bg-primary) 100%
+    );
   }
 
-  .section-heading {
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
+  .certificates-grid-home {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     gap: 2rem;
-    margin-bottom: 2.2rem;
   }
 
-  .section-heading .section-subtitle {
-    margin-bottom: 0;
-  }
-
-  .view-more-link {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.45rem;
-    min-height: 42px;
-    padding: 0.62rem 0.95rem;
-    border-radius: 8px;
-    color: var(--accent-primary);
-    border: 1px solid rgba(96, 114, 90, 0.22);
-    background: rgba(255, 255, 255, 0.52);
-    font-size: 0.9rem;
-    font-weight: 700;
-    text-decoration: none;
-    white-space: nowrap;
-    transition: transform 0.2s ease, background 0.2s ease;
-  }
-
-  .view-more-link:hover {
-    transform: translateY(-2px);
-    background: rgba(96, 114, 90, 0.08);
-  }
-
-  .featured-certificates {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 1.35rem;
-  }
-
-  .featured-certificate-card {
-    display: grid;
-    grid-template-columns: minmax(180px, 0.85fr) minmax(0, 1fr);
-    min-height: 285px;
-    background: rgba(255, 255, 255, 0.72);
-    border: 1px solid var(--glass-border);
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 10px 28px rgba(96, 114, 90, 0.07);
-    transition: transform 0.28s ease, box-shadow 0.28s ease, background 0.28s ease;
-  }
-
-  .featured-certificate-card:hover {
-    transform: translateY(-4px);
-    background: rgba(255, 255, 255, 0.88);
-    box-shadow: 0 14px 36px rgba(96, 114, 90, 0.11);
-  }
-
-  .featured-preview {
-    display: block;
-    height: 100%;
-    min-height: 285px;
-    padding: 0.7rem;
-    background: #f8faf7;
-    border-right: 1px solid var(--glass-border);
-    overflow: hidden;
-  }
-
-  .featured-preview img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    object-position: center;
-    transition: transform 0.3s ease;
-  }
-
-  .featured-certificate-card:hover .featured-preview img {
-    transform: scale(1.025);
-  }
-
-  .featured-body {
+  .certificate-card-home {
     display: flex;
     flex-direction: column;
-    min-width: 0;
-    padding: 1.2rem;
+    gap: 1.5rem;
+    position: relative;
+    overflow: hidden;
+    transition:
+      transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+      box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+      border-color 0.4s ease;
   }
 
-  .featured-category {
-    width: fit-content;
-    margin-bottom: 0.65rem;
-    padding: 0.22rem 0.52rem;
-    border-radius: 6px;
-    background: rgba(96, 114, 90, 0.1);
-    color: var(--accent-primary);
-    font-size: 0.72rem;
-    font-weight: 750;
+  .certificate-card-home::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--card-accent), transparent);
+    opacity: 0.25;
   }
 
-  .featured-body h3 {
-    color: var(--text-primary);
-    font-size: 1.05rem;
-    line-height: 1.35;
-    margin-bottom: 0.55rem;
+  .certificate-card-home__glow {
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at center, color-mix(in srgb, var(--card-accent) 8%, transparent), transparent 70%);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.5s ease;
   }
 
-  .featured-body p {
-    color: var(--text-secondary);
-    font-size: 0.86rem;
-    line-height: 1.55;
-    margin-bottom: 0.9rem;
+  .certificate-card-home:hover {
+    transform: translateY(-6px);
+    box-shadow:
+      0 20px 40px rgba(96, 114, 90, 0.08),
+      0 0 30px color-mix(in srgb, var(--card-accent) 12%, transparent);
+    border-color: var(--card-accent);
   }
 
-  .featured-meta {
-    display: grid;
-    gap: 0.5rem;
-    margin-top: auto;
-    margin-bottom: 1rem;
+  .certificate-card-home:hover .certificate-card-home__glow {
+    opacity: 1;
   }
 
-  .featured-meta div {
-    display: grid;
-    grid-template-columns: 58px minmax(0, 1fr);
-    gap: 0.55rem;
+  .certificate-card-home:hover .certificate-card-home__title {
+    color: var(--card-accent);
   }
 
-  .featured-meta dt {
-    color: var(--text-muted);
-    font-size: 0.7rem;
-    font-weight: 700;
+  .certificate-card-home--featured {
+    grid-column: 1 / -1;
+    background: linear-gradient(135deg, rgba(96, 114, 90, 0.06) 0%, var(--glass) 100%);
+    border-width: 1px;
+    box-shadow:
+      0 0 50px rgba(96, 114, 90, 0.08),
+      inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  }
+
+  @media (min-width: 900px) {
+    .certificate-card-home--featured {
+      display: grid;
+      grid-template-columns: 1.25fr 1fr;
+      gap: 2.5rem;
+      align-items: center;
+    }
+  }
+
+  .certificate-card-home__content {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    flex: 1;
+    position: relative;
+    z-index: 1;
+  }
+
+  .certificate-card-home__header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  .certificate-card-home__type,
+  .certificate-card-home__featured-badge {
+    display: inline-flex;
+    align-items: center;
+    border-radius: 50px;
+    font-weight: 600;
     text-transform: uppercase;
   }
 
-  .featured-meta dd {
-    color: var(--text-primary);
-    font-size: 0.8rem;
-    overflow-wrap: anywhere;
+  .certificate-card-home__type {
+    padding: 0.3rem 0.85rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.03em;
+    color: var(--card-accent);
+    background: color-mix(in srgb, var(--card-accent) 12%, transparent);
+    border: 1px solid color-mix(in srgb, var(--card-accent) 25%, transparent);
   }
 
-  .featured-actions {
+  .certificate-card-home__featured-badge {
+    gap: 0.35rem;
+    padding: 0.3rem 0.75rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.04em;
+    color: #fbbf24;
+    background: rgba(251, 191, 36, 0.1);
+    border: 1px solid rgba(251, 191, 36, 0.25);
+  }
+
+  .certificate-card-home__title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    line-height: 1.3;
+    transition: color 0.3s ease;
+  }
+
+  .certificate-card-home__description {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.65;
+  }
+
+  .certificate-card-home__highlights {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin: 0.25rem 0;
+  }
+
+  .certificate-card-home__highlight {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    line-height: 1.4;
+  }
+
+  .certificate-card-home__check {
+    flex-shrink: 0;
+    color: var(--card-accent);
+    opacity: 0.85;
+  }
+
+  .certificate-card-home__tags {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.55rem;
+    gap: 0.45rem;
+    margin-top: auto;
+    padding-top: 0.5rem;
   }
 
-  .featured-primary,
-  .featured-secondary {
+  .certificate-card-home__tag {
     display: inline-flex;
     align-items: center;
-    justify-content: center;
+    padding: 0.25rem 0.7rem;
+    border-radius: 50px;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    background: rgba(255, 255, 255, 0.55);
+    border: 1px solid var(--glass-border);
+    transition: var(--transition);
+    white-space: nowrap;
+  }
+
+  .certificate-card-home__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--glass-border);
+    margin-top: 0.75rem;
+  }
+
+  .certificate-card-home__link {
+    display: inline-flex;
+    align-items: center;
     gap: 0.4rem;
-    min-height: 38px;
-    padding: 0.58rem 0.78rem;
-    border-radius: 8px;
+    padding: 0.45rem 1rem;
+    border-radius: 50px;
     font-size: 0.8rem;
-    font-weight: 700;
+    font-weight: 500;
+    color: var(--text-secondary);
+    background: rgba(255, 255, 255, 0.55);
+    border: 1px solid var(--glass-border);
     text-decoration: none;
-    transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+    transition: var(--transition);
+    white-space: nowrap;
   }
 
-  .featured-primary {
-    color: #ffffff;
-    background: var(--accent-primary);
-    box-shadow: 0 8px 20px rgba(96, 114, 90, 0.18);
+  .certificate-card-home__link:hover {
+    color: var(--card-accent);
+    background: color-mix(in srgb, var(--card-accent) 10%, transparent);
+    border-color: color-mix(in srgb, var(--card-accent) 35%, transparent);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 15px color-mix(in srgb, var(--card-accent) 15%, transparent);
   }
 
-  .featured-secondary {
-    color: var(--accent-primary);
-    border: 1px solid rgba(96, 114, 90, 0.22);
-    background: rgba(255, 255, 255, 0.52);
+  .certificate-card-home__gallery {
+    position: relative;
+    width: 100%;
+    border-radius: var(--border-radius-sm);
+    border: 1px solid var(--glass-border);
+    overflow: hidden;
+    background: var(--bg-secondary);
+    box-shadow: 0 4px 15px rgba(96, 114, 90, 0.04);
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    z-index: 1;
   }
 
-  .featured-primary:hover,
-  .featured-secondary:hover {
-    transform: translateY(-2px);
+  .certificate-card-home__gallery-viewport {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: zoom-in;
   }
 
-  .featured-secondary:hover {
-    background: rgba(96, 114, 90, 0.08);
+  .certificate-card-home__gallery-viewport img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 0.5rem;
+    transition: transform 0.35s ease;
   }
 
-  .certificates-cta {
+  .certificate-card-home:hover .certificate-card-home__gallery-viewport img {
+    transform: scale(1.02);
+  }
+
+  .certificate-card-home__gallery-caption {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.6rem 0.9rem;
+    background: rgba(255, 255, 255, 0.45);
+    border-top: 1px solid var(--glass-border);
+    font-size: 0.78rem;
+    color: var(--text-secondary);
+  }
+
+  .certificates-more-cta {
     display: flex;
     justify-content: center;
-    margin-top: 2.25rem;
+    margin-top: 3.5rem;
   }
 
-  .btn-certificates {
+  .btn-more-certificates {
     display: inline-flex;
     align-items: center;
-    justify-content: center;
-    gap: 0.55rem;
-    min-height: 44px;
-    padding: 0.8rem 1.45rem;
-    border-radius: 8px;
+    gap: 0.65rem;
+    padding: 0.9rem 2.25rem;
+    border-radius: 50px;
+    font-size: 0.95rem;
+    font-weight: 600;
     color: #ffffff;
     background: var(--gradient-hero);
-    font-size: 0.92rem;
-    font-weight: 650;
+    background-size: 200% 200%;
+    border: none;
+    cursor: pointer;
+    transition: var(--transition);
     text-decoration: none;
-    box-shadow: 0 8px 24px rgba(96, 114, 90, 0.14);
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    line-height: 1;
+    box-shadow: 0 4px 15px rgba(96, 114, 90, 0.15);
   }
 
-  .btn-certificates:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 12px 30px rgba(96, 114, 90, 0.2);
+  .btn-more-certificates:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(96, 114, 90, 0.25);
+    background-position: right center;
   }
 
-  @media (max-width: 1080px) {
-    .featured-certificates {
+  .btn-more-certificates svg {
+    transition: transform 0.3s ease;
+  }
+
+  .btn-more-certificates:hover svg {
+    transform: translateX(4px);
+  }
+
+  @media (max-width: 900px) {
+    .certificates-grid-home {
       grid-template-columns: 1fr;
+    }
+
+    .certificate-card-home--featured {
+      grid-column: span 1;
     }
   }
 
-  @media (max-width: 680px) {
-    .section-heading {
+  @media (max-width: 480px) {
+    .certificates-grid-home {
+      gap: 1.5rem;
+    }
+
+    .certificate-card-home__title {
+      font-size: 1.15rem;
+    }
+
+    .certificate-card-home__description {
+      font-size: 0.9rem;
+    }
+
+    .certificate-card-home__links {
+      flex-direction: column;
+    }
+
+    .certificate-card-home__link {
+      justify-content: center;
+    }
+
+    .certificate-card-home__gallery-caption {
       align-items: flex-start;
       flex-direction: column;
-      gap: 1rem;
-    }
-
-    .featured-certificate-card {
-      grid-template-columns: 1fr;
-      min-height: 0;
-    }
-
-    .featured-preview {
-      min-height: 0;
-      aspect-ratio: 1.38;
-      border-right: none;
-      border-bottom: 1px solid var(--glass-border);
-    }
-
-    .featured-body {
-      padding: 1.1rem;
-    }
-
-    .featured-actions {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-    }
-  }
-
-  @media (max-width: 420px) {
-    .featured-actions {
-      grid-template-columns: 1fr;
-    }
-
-    .featured-meta div {
-      grid-template-columns: 1fr;
-      gap: 0.15rem;
+      gap: 0.2rem;
     }
   }
 </style>

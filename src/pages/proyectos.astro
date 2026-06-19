@@ -15,6 +15,7 @@ interface Project {
   tech: string[];
   links: ProjectLink[];
   highlights: string[];
+  metrics?: { value: string; label: string }[];
   featured?: boolean;
   accentColor: string;
   category: 'mobile' | 'web' | 'others';
@@ -46,6 +47,12 @@ const projects: Project[] = [
       'Clean Architecture + GetX',
       'POS e inventario con Laravel',
       'Optimización y rutas en CodeIgniter',
+    ],
+    metrics: [
+      { value: '2,572', label: 'sesiones iOS' },
+      { value: '85', label: 'descargas iOS' },
+      { value: '313', label: 'usuarios diarios Android aprox.' },
+      { value: '307', label: 'actualizaciones iOS' },
     ],
     featured: true,
     accentColor: '#60725a',
@@ -114,23 +121,6 @@ const projects: Project[] = [
       { src: '/projects/vidasaludable/busqueda.webp', label: 'Búsqueda — Filtros y Alumnos' },
       { src: '/projects/vidasaludable/detalle.webp', label: 'Detalle — Información y Evaluación' },
     ],
-  },
-  {
-    name: 'Coraza Inteligente',
-    type: 'Proyecto IA Privada (RAG)',
-    description:
-      'Proyecto tecnológico para consulta segura de documentos sensibles empleando modelos de lenguaje de código abierto en servidores locales privados.',
-    tech: ['Python', 'Ollama', 'Open WebUI', 'RAG', 'AI Models'],
-    category: 'others',
-    links: [
-      { label: 'Pitch / Propuesta', url: '/pitch-creo-mx-coraza.html' }
-    ],
-    highlights: [
-      'Modelos Open-Source locales',
-      'Arquitectura RAG privada',
-      'Privacidad empresarial de datos'
-    ],
-    accentColor: '#6d8569'
   },
   {
     name: 'Impacta Control de Activos',
@@ -227,7 +217,7 @@ function getLinkIcon(label: string, icon?: string): string {
         <button class="filter-btn active" data-filter="all">Todos</button>
         <button class="filter-btn" data-filter="mobile">Mobile (Flutter)</button>
         <button class="filter-btn" data-filter="web">Web & Backend</button>
-        <button class="filter-btn" data-filter="others">Otros / IA</button>
+        <button class="filter-btn" data-filter="others">Otros</button>
       </div>
 
       <!-- Projects Grid -->
@@ -259,6 +249,17 @@ function getLinkIcon(label: string, icon?: string): string {
                     </li>
                   ))}
                 </ul>
+
+                {project.metrics && project.metrics.length > 0 && (
+                  <div class="project-card__metrics" aria-label={`Métricas de ${project.name}`}>
+                    {project.metrics.map((metric) => (
+                      <div class="project-card__metric">
+                        <strong>{metric.value}</strong>
+                        <span>{metric.label}</span>
+                      </div>
+                    ))}
+                  </div>
+                )}
 
                 <div class="project-card__tech-links">
                   <div class="project-card__tech">
@@ -573,6 +574,41 @@ function getLinkIcon(label: string, icon?: string): string {
     flex-shrink: 0;
     color: var(--card-accent);
     opacity: 0.85;
+  }
+
+  .project-card__metrics {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.75rem;
+    margin-top: 0.25rem;
+  }
+
+  .project-card__metric {
+    padding: 0.75rem 0.85rem;
+    border-radius: var(--border-radius-sm);
+    background: rgba(255, 255, 255, 0.55);
+    border: 1px solid var(--glass-border);
+    transition: var(--transition);
+  }
+
+  .project-card:hover .project-card__metric {
+    border-color: color-mix(in srgb, var(--card-accent) 28%, transparent);
+  }
+
+  .project-card__metric strong {
+    display: block;
+    color: var(--card-accent);
+    font-family: var(--font-mono);
+    font-size: 1.05rem;
+    line-height: 1.1;
+    margin-bottom: 0.25rem;
+  }
+
+  .project-card__metric span {
+    display: block;
+    color: var(--text-secondary);
+    font-size: 0.72rem;
+    line-height: 1.25;
   }
 
   .project-card__tech {
@@ -937,6 +973,10 @@ function getLinkIcon(label: string, icon?: string): string {
     }
 
     .projects-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .project-card__metrics {
       grid-template-columns: 1fr;
     }
 
